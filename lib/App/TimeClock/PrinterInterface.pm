@@ -1,6 +1,12 @@
+package App::TimeClock::PrinterInterface;
+
 =head1 NAME
 
-PrinterInterface - Interface class. All printer objects given to
+App::TimeClock::PrinterInterface
+
+=head1 DESCRIPTION
+
+Interface class. All printer objects given to
 L<App::TimeClock::DailyReport> constructor must be derived from
 PrinterInterface.
 
@@ -24,7 +30,6 @@ PrinterInterface.
 =over
 
 =cut
-package App::TimeClock::PrinterInterface;
 
 =item new()
 
@@ -64,3 +69,33 @@ sub _must_implement {
 1;
 
 =back
+
+=for text
+=encoding utf-8
+=end
+
+=head1 AUTHOR
+
+Søren Lund, C<< <soren at lund.org> >>
+
+=head1 SEE ALSO
+
+L<timeclock.pl>
+
+=head1 COPYRIGHT
+
+Copyright (C) 2012 Søren Lund
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; version 2 dated June, 1991 or at your option
+any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+A copy of the GNU General Public License is available in the source tree;
+if not, write to the Free Software Foundation, Inc.,
+59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.

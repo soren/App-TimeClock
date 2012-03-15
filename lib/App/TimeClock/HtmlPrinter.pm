@@ -1,30 +1,23 @@
-=head2 HtmlPrinter
+package App::TimeClock::HtmlPrinter;
 
-Implements the L<App::TimeClock::PrinterInterface>. Will print a (simple) HTML report
-with embedded (CSS) styling.
+our @ISA = qw(App::TimeClock::PrinterInterface);
 
-=head3 Methods
+use POSIX qw(strftime);
+
+=head1 NAME
+
+App::TimeClock::HtmlPrinter
+
+=head1 DESCRIPTION
+
+Implements the L<App::TimeClock::PrinterInterface>. Will print a
+(simple) HTML report with embedded (CSS) styling.
+
+=head1 METHODS
 
 =over
 
 =cut
-package App::TimeClock::HtmlPrinter;
-our @ISA = qw(App::TimeClock::PrinterInterface);
-use POSIX qw(strftime);
-our $css_style = <<'EOD';
-html, body { margin: 0; padding: 0; border: 0; }
-body { background:#fff; color:#000; margin: 1em 0 0 1em; }
-table { border-collapse: collapse; width: 80ex; }
-th, td { margin:0; border:1px solid #000;padding:0.2em; }
-caption { margin-top: 1em; }
-tr, caption { text-align:left; }
-.totals { border: 2px solid #000; background: #9cf; width: 40ex; padding: 0.5em;}
-.totals, caption { font-size: 110%; font-weight: bold; }
-th { background: #58b; color: #fff; }
-tr:nth-child(even) td { background: #dfe; }
-tr:nth-child(odd) td { background: #def; }
-th.N, td.N { width: 10%; text-align: right; }
-EOD
 
 =item print_header()
 
@@ -41,7 +34,20 @@ sub print_header {
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><meta http-equiv='Content-Type' content='text/html;charset=utf-8'/><title>$title</title>
-<style type='text/css'>$css_style</style></head><body><h1>$title</h1>
+<style type='text/css'>
+html, body { margin: 0; padding: 0; border: 0; }
+body { background:#fff; color:#000; margin: 1em 0 0 1em; }
+table { border-collapse: collapse; width: 80ex; }
+th, td { margin:0; border:1px solid #000;padding:0.2em; }
+caption { margin-top: 1em; }
+tr, caption { text-align:left; }
+.totals { border: 2px solid #000; background: #9cf; width: 40ex; padding: 0.5em;}
+.totals, caption { font-size: 110%; font-weight: bold; }
+th { background: #58b; color: #fff; }
+tr:nth-child(even) td { background: #dfe; }
+tr:nth-child(odd) td { background: #def; }
+th.N, td.N { width: 10%; text-align: right; }
+</style></head><body><h1>$title</h1>
 EOD
 
 };
@@ -85,3 +91,33 @@ sub print_footer {
 1;
 
 =back
+
+=for text
+=encoding utf-8
+=end
+
+=head1 AUTHOR
+
+Søren Lund, C<< <soren at lund.org> >>
+
+=head1 SEE ALSO
+
+L<timeclock.pl>
+
+=head1 COPYRIGHT
+
+Copyright (C) 2012 Søren Lund
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; version 2 dated June, 1991 or at your option
+any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+A copy of the GNU General Public License is available in the source tree;
+if not, write to the Free Software Foundation, Inc.,
+59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
