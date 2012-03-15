@@ -1,9 +1,22 @@
+bin/timeclock.pl
 Build.PL
 Changes
+ignore.txt
 lib/App/TimeClock.pm
+lib/App/TimeClock/ConsolePrinter.pm
+lib/App/TimeClock/CsvPrinter.pm
+lib/App/TimeClock/DailyReport.pm
+lib/App/TimeClock/HtmlPrinter.pm
+lib/App/TimeClock/PrinterInterface.pm
+LICENSE
+Makefile.PL
 MANIFEST			This list of files
+META.json
+META.yml
 README
 t/00-load.t
+t/boilerplate.t
 t/manifest.t
 t/pod-coverage.t
 t/pod.t
+t/timelog

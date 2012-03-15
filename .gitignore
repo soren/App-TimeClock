@@ -1,0 +1,11 @@
+/Build
+/MYMETA.json
+/MYMETA.yml
+/_build/
+/blib/
+/META.json
+/META.yml
+/Makefile.PL
+/App-TimeClock-*.tar.gz
+/MANIFEST.SKIP.bak
+/MANIFEST.bak
