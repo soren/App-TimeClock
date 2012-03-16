@@ -111,7 +111,15 @@ tracking package.
 
 =head1 CONFIGURATION
 
-If you haven't
+If you haven't changed your Emacs/TimeClock setup, no configuration is
+needed. The script will read your timelog file from the default
+location which is ~/.timelog
+
+If you have changed the location of the timelog file (I've placed mine
+in a Dropbox folder), you can create the file ~/.timeclockrc and
+define the location of the timelog file there. Example:
+
+ $timelog = "$ENV{HOME}/Dropbox/timelog";
 
 =head1 DEPENDENCIES
 
@@ -125,10 +133,11 @@ Søren Lund, C<< <soren at lund.org> >>
 
 =head1 SEE ALSO
 
-L<App:TimeClock::ConsolePrinter>,
-L<App:TimeClock::HtmlPrinter>,
-L<App:TimeClock::CsvPrinter>,
-L<App:TimeClock::PrinterInterface>,
+L<App::TimeClock::ConsolePrinter>,
+L<App::TimeClock::HtmlPrinter>,
+L<App::TimeClock::CsvPrinter>,
+L<App::TimeClock::PrinterInterface>
+
 L<http://www.gnu.org/software/emacs/>,
 L<http://www.emacswiki.org/emacs/TimeClock>
 

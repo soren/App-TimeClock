@@ -2,3 +2,7 @@ Revision history for App-TimeClock
 
 0.01    2012-03-15 22:20
         First version, released on an unsuspecting world.
+
+0.02    2012-03-16 11:07
+        Added description of .timelogrc configuration file.
+        Fixed a few links in the documentation.

@@ -42,7 +42,7 @@ sub print_day {
     printf '"%s","%s","%s","%s",%f' . "\n",$wday, $date, $start, $end, $work;
 };
 
-=item print_header()
+=item print_footer()
 
 There's no footer when print CSV. This is an empty sub.
 

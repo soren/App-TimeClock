@@ -12,7 +12,7 @@ App::TimeClock::ConsolePrinter
 
 =head1 DESCRIPTION
 
-Implements the L<App:TimeClock::PrinterInterface>. Will print a simple ASCII
+Implements the L<App::TimeClock::PrinterInterface>. Will print a simple ASCII
 format. Suitable for using in a console/terminal.
 
 =head1 METHODS
@@ -72,7 +72,7 @@ sub print_day {
     printf("\n");
 };
 
-=item print_day()
+=item print_footer()
 
 Prints the total number of hours worked and the daily
 average. Example:
