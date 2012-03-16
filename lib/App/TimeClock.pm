@@ -1,10 +1,10 @@
 package App::TimeClock;
 
-our $VERSION = "0.02";
+our $VERSION = "0.03";
 
 =head1 NAME
 
-App::TimeClock - Provides timeclock.pl, a Emacs/timeclock reporting utility
+App::TimeClock - Provides timeclock.pl, a reporting utility for timeclock, which is a time tracking package for GNU Emacs.
 
 =head1 DESCRIPTION
 

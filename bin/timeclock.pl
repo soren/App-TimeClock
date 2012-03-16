@@ -3,8 +3,10 @@
 use strict;
 use warnings;
 
+use File::Basename qw(basename);
 use Pod::Usage;
 
+use App::TimeClock;
 use App::TimeClock::PrinterInterface;
 use App::TimeClock::ConsolePrinter;
 use App::TimeClock::HtmlPrinter;
@@ -42,6 +44,15 @@ if ($#ARGV == 0) {
         pod2usage(-verbose => 1);
     } elsif ($ARGV[0] eq "--man") {
         pod2usage(-verbose => 2);
+    } elsif ($ARGV[0] eq "--version") {        
+        printf "\nThis is %s version %s\n", basename($0), App::TimeClock->VERSION();
+        print "\nCopyright (C) 2012 Søren Lund\n";
+        print "License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.\n";
+        print "This is free software: you are free to change and redistribute it.\n";
+        print "There is NO WARRANTY, to the extent permitted by law.\n";
+        print "\nWritten by Søren Lund.\n";
+
+        exit 0;
     } elsif ($ARGV[0] eq "--html") {
         $printer = App::TimeClock::HtmlPrinter->new();
     } elsif  ($ARGV[0] eq "--csv") {
@@ -94,6 +105,10 @@ Print short usages information and exits.
 
 Displays the manual and exists.
 
+=item B<--version>
+
+Displays the version number and copyright information and exists.
+
 =item B<--html>
 
 Switches to HTML formatted output.
@@ -106,8 +121,14 @@ Switches to CSV formatted output.
 
 =head1 DESCRIPTION
 
-This is a simple reporting utility for timeclock, which is an Emacs time
-tracking package.
+This is a simple reporting utility for timeclock, which is a time
+tracking package for GNU Emacs.
+
+You will use timeclock from GNU Emacs to I<check in> and I<check out>
+of projects during your workday.
+
+Then at the end of the week you can run L<timeclock.pl> to get a daily
+report of your work time.
 
 =head1 CONFIGURATION
 
@@ -120,6 +141,29 @@ in a Dropbox folder), you can create the file ~/.timeclockrc and
 define the location of the timelog file there. Example:
 
  $timelog = "$ENV{HOME}/Dropbox/timelog";
+
+=head2 Emacs Integration
+
+You could add the following to you .emacs file to integrate
+L<timeclock.pl> into Emacs:
+ 
+ (defun timeclock-show-daily-report()
+   "Creates and displays a daily report of timeclock entries."
+   (interactive)
+   (let ((process-connection-type nil)   ; Use a pipe.
+         (buffer-name "*timeclock daily report*")
+         (script-name "timeclock.pl"))
+     (when (get-buffer buffer-name)
+       (progn
+         (set-buffer buffer-name)
+         (set-buffer-modified-p nil)
+         (erase-buffer)))
+     (set-buffer (get-buffer-create buffer-name))
+     (start-process command-name buffer-name "perl" "-S" script-name)
+     (switch-to-buffer buffer-name)))
+
+And the use C<M-x timeclock-show-daily-report RET> to display the
+report.
 
 =head1 DEPENDENCIES
 

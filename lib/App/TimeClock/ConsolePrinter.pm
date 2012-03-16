@@ -33,6 +33,7 @@ centered above the tables printed by L</print_day()>. Example:
 =cut
 sub print_header {
     my $ident = ' ' x 17;
+    print "\n";
     print "${ident}=====================================\n";
     print "${ident}Daily Report " . localtime() . "\n";
     print "${ident}=====================================\n\n";

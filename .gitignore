@@ -7,5 +7,6 @@
 /META.yml
 /Makefile.PL
 /App-TimeClock-*.tar.gz
+/App-TimeClock-*/
 /MANIFEST.SKIP.bak
 /MANIFEST.bak

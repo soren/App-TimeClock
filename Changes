@@ -6,3 +6,9 @@ Revision history for App-TimeClock
 0.02    2012-03-16 11:07
         Added description of .timelogrc configuration file.
         Fixed a few links in the documentation.
+
+0.03    2012-03-16 16:02
+        ConsolePrinter: Added a blank line before printing the header.
+        timeclock.pl: Added --version option that will print the version number.
+        Switched to GPL v3.
+        Updated documentation.

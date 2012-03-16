@@ -5,7 +5,7 @@ use Module::Build;
 
 my $builder = Module::Build->new(
     module_name         => 'App::TimeClock',
-    license             => 'gpl',
+    license             => 'GPL_3',
     dist_author         => q{Søren Lund <soren@lund.org>},
     dist_version_from   => 'lib/App/TimeClock.pm',
     build_requires => {
