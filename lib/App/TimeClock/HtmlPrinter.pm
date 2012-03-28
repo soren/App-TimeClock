@@ -84,7 +84,7 @@ sub print_footer {
     print "<p class='totals'>";
     printf "TOTAL = %.2f<br/>", $work_year_to_date;
     printf "PERIOD = %d days<br/>", $day_count;
-    printf "AVG. DAY = %.2f<br/>", $work_year_to_date / $day_count;
+    printf "AVG. DAY = %.2f<br/>", $day_count > 0 ? $work_year_to_date / $day_count : 0;
     print "</p>\n";
     print "</body></html>\n";
 };

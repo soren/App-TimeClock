@@ -87,7 +87,7 @@ sub print_footer {
     my ($self, $work_year_to_date, $day_count) = (@_);
     printf "TOTAL = %.2f hours\n", $work_year_to_date;
     printf "PERIOD = %d days\n", $day_count;
-    printf "AVERAGE = %.2f hours/day\n", $work_year_to_date / $day_count;
+    printf "AVERAGE = %.2f hours/day\n", $day_count > 0 ? $work_year_to_date / $day_count : 0;
 };
 1;
 
