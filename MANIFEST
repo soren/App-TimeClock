@@ -20,3 +20,6 @@ t/manifest.t
 t/pod-coverage.t
 t/pod.t
 t/timelog
+t/timelog.2days
+t/timelog.empty
+t/timelog.pastmidnight
