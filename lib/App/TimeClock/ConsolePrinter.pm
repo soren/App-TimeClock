@@ -4,6 +4,9 @@ our @ISA = qw(App::TimeClock::PrinterInterface);
 
 use POSIX qw(strftime);
 
+use utf8;
+binmode STDOUT, ':utf8';
+
 our $hrline =  '+' . ('-' x 62) . '+' . ('-' x 7) . '+';
 
 =head1 NAME
