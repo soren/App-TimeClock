@@ -18,3 +18,6 @@ Revision history for App-TimeClock
         ConsolePrinter: Fixed divions by zero bug (if worked less that a day).
         Build.PL: Fixed license value in Build file.
         Added more test files.
+
+0.05    2012-11-28 11:43
+        DailyReport: The timelog file is now read as utf8

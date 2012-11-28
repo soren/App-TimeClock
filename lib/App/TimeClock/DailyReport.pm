@@ -56,6 +56,7 @@ sub execute {
     my $self = shift;
 
     open FILE, '<', $self->{timelog} or die "$!\n";
+    binmode FILE, ':utf8';
 
     my %projects;
     my ($current_project, $current_date, $work, $work_total, $start, $end);
