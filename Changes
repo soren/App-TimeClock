@@ -12,3 +12,6 @@ Revision history for App-TimeClock
         timeclock.pl: Added --version option that will print the version number.
         Switched to GPL v3.
         Updated documentation.
+
+0.04    2012-11-28 10:33
+        ConsolePrinter: Fixed bug that would cause columns not to align when task descriptions contained utf8 characters.
