@@ -35,11 +35,12 @@ centered above the tables printed by L</print_day()>. Example:
 
 =cut
 sub print_header {
+    my $self = shift;
     my $ident = ' ' x 17;
-    print "\n";
-    print "${ident}=====================================\n";
-    print "${ident}Daily Report " . localtime() . "\n";
-    print "${ident}=====================================\n\n";
+    $self->_print("\n");
+    $self->_print("${ident}=====================================\n");
+    $self->_print("${ident}Daily Report " . localtime() . "\n");
+    $self->_print("${ident}=====================================\n\n");
 };
 
 =item print_day()
@@ -64,16 +65,16 @@ sub print_day {
     my ($year, $mon, $mday) = split(/\//, $date);
     my $wday = substr(strftime("%a", 0, 0, 0, $mday, $mon-1, $year-1900),0,3);
 
-    printf("* %3s %s (%s - %s) *\n", $wday, $date, $start, $end);
-    print("$hrline\n");
-    printf("| Total Daily Hours                                            | %5.2f |\n", $work);
-    print("$hrline\n");
+    $self->_print(sprintf("* %3s %s (%s - %s) *\n", $wday, $date, $start, $end));
+    $self->_print("$hrline\n");
+    $self->_print(sprintf("| Total Daily Hours                                            | %5.2f |\n", $work));
+    $self->_print("$hrline\n");
 
     foreach my $k (sort keys %projects) {
-        printf("| %-60s | %5.2f |\n",$k, $projects{$k});
-        print("$hrline\n");
+        $self->_print(sprintf("| %-60s | %5.2f |\n",$k, $projects{$k}));
+        $self->_print("$hrline\n");
     }
-    printf("\n");
+    $self->_print("\n");
 };
 
 =item print_footer()
@@ -88,9 +89,9 @@ average. Example:
 =cut
 sub print_footer {
     my ($self, $work_year_to_date, $day_count) = (@_);
-    printf "TOTAL = %.2f hours\n", $work_year_to_date;
-    printf "PERIOD = %d days\n", $day_count;
-    printf "AVERAGE = %.2f hours/day\n", $day_count > 0 ? $work_year_to_date / $day_count : 0;
+    $self->_print(sprintf("TOTAL = %.2f hours\n", $work_year_to_date));
+    $self->_print(sprintf("PERIOD = %d days\n", $day_count));
+    $self->_print(sprintf("AVERAGE = %.2f hours/day\n", $day_count > 0 ? $work_year_to_date / $day_count : 0));
 };
 1;
 

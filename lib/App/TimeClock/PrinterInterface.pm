@@ -40,6 +40,33 @@ sub new {
     bless { }, shift;
 }
 
+=item _print()
+
+Private print method that uses handle specified by L<_set_ouput_fh> or stdout by default.
+All implementing classes should use _print to print instead of print.
+This makes testing much easier.
+
+=cut
+sub _print {
+   my $self = shift;
+   my $fh = $self->_get_output_fh;
+   print { $fh } @_;
+}
+
+=item _get_output_fh()
+
+Get the file handle used by L<_print>.
+
+=cut
+sub _get_output_fh { $_[0]->{_output}  || \*STDOUT }
+
+=item _set_ouput_fh()
+
+Set the file handle used by L<_print>.
+
+=cut
+sub _set_output_fh { $_[0]->{_output} = $_[1] }
+
 =item print_header()
 
 Called once at the start of a report.

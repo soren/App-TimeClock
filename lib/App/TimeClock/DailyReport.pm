@@ -1,5 +1,9 @@
 package App::TimeClock::DailyReport;
 
+use POSIX qw(difftime strftime);
+use Time::Local;
+use Time::Piece;
+
 =head1 NAME
 
 App::TimeClock::DailyReport
@@ -43,6 +47,34 @@ sub new {
     bless $self, $class;
 };
 
+
+=item _timelocal() 
+
+Returns a time (seconds since epoch) from a date and time.
+
+=cut
+sub _timelocal {
+    my ($self, $date, $time) = @_;
+    my ($year, $mon, $mday) = split(/\//, $date);
+    my ($hours, $min, $sec ) = split(/:/, $time);
+
+    return timelocal($sec, $min, $hours, $mday, $mon-1, $year);
+};
+
+=item _get_report_time()
+
+Returns the time when the report was executed.
+
+=cut
+sub _get_report_time { $_[0]->{_report_time} || time }
+
+=item _set_report_time()
+
+Sets the time when the report is executed.
+
+=cut
+sub _set_report_time { $_[0]->{_report_time} = $_[0]->_timelocal($_[1], $_[2]) }
+
 =item execute()
 
 Opens the timelog file starts parsing it, looping over each day and
@@ -50,16 +82,13 @@ calling print_day() for each.
 
 =cut
 sub execute {
-    use Time::Local;
-    use POSIX qw(difftime);
-
     my $self = shift;
 
     open FILE, '<', $self->{timelog} or die "$!\n";
     binmode FILE, ':utf8';
 
     my %projects;
-    my ($current_project, $current_date, $work, $work_total, $start, $end);
+    my ($current_project, $current_date, $work, $work_total);
     my ($start_time, $end_time);
     my ($work_year_to_date, $day_count) = (0,0);
 
@@ -68,7 +97,15 @@ sub execute {
 
     $self->{printer}->print_header;
 
-    while(<FILE>) {
+    while (not eof(FILE)) {
+        chomp(my $iline = <FILE>);
+        die "Expected check in in line $." unless $iline =~ /^i /;
+        
+        my $oline = undef;
+        if (not eof(FILE)) {
+            chomp($oline = <FILE>);
+            die "Excepted check out in line $." unless $oline =~ /^o /;
+        }
 
         # Split the line, it should contain:
         #
@@ -77,50 +114,42 @@ sub execute {
         # - time is formatted as HH:MM:SS
         # - project is then name of the project/task and is only required when checking in.
         #
-        my ($state, $date, $time, $project) = split(/ /, $_, 4);
+        my ($idate, $itime, $iproject) = (split(/ /, $iline, 4))[1..3];
+        my ($odate, $otime, $oproject) = (defined $oline) ? (split(/ /, $oline, 4))[1..3] :
+          (strftime("%Y/%m/%d", localtime($self->_get_report_time)),
+           strftime("%H:%M:%S", localtime($self->_get_report_time)), "DANGLING");
 
-        if ($current_project) {
-            chomp($current_project);
-            $current_project=~tr/\r//d;
+        if (!length($current_date)) {
+            # First check in, set the current date and start time
+            $current_date = $idate;
+            $start_time = $itime;
+        } elsif ($current_date ne $idate) {
+            # It's a new day, print the current day, update totals and reset variables
+            $self->{printer}->print_day($current_date, $start_time, $end_time, $work_total, %projects);
+
+            $work_year_to_date += $work_total;
+            $day_count++;
+
+            $work_total = 0;
+            $current_date = $idate;
+            $start_time = $itime;
+            %projects = ();
+            $end_time = "";
         }
 
-        chomp($date);
+        $current_project = $iproject;
+        $work = difftime($self->_timelocal($odate, $otime), $self->_timelocal($idate, $itime)) / 60 / 60;
+        $work_total += $work;
+        $end_time = $otime;
+        $projects{$current_project} += $work;
 
-        chomp($time); $time=~tr/\r//d;
-
-        my ($hours, $min, $sec ) = split(/:/, $time);
-
-        my ($year, $mon, $mday) = split(/\//, $date);
-
-        if ($state eq 'i') {
-            if (!length($current_date)) {
-                $current_date = $date;
-                $start_time = $time;
-            } elsif (!($current_date eq $date)) {
-                $self->{printer}->print_day($current_date, $start_time, $end_time, $work_total, %projects);
-
-                $work_year_to_date += $work_total;
-                $day_count++;
-
-                $work_total = 0;
-                $current_date = $date;
-                $start_time = $time;
-                %projects = ();
-                $end_time = "";
-            }
-
-            $current_project = $project;
-            $start = timelocal($sec,$min,$hours,$mday,$mon-1,$year);
-
-        } elsif ($state eq 'o') {
-            $end = timelocal($sec,$min,$hours,$mday,$mon-1,$year);
-            $work = difftime($end, $start) / 60 / 60;
-            $work_total += $work;
-            $end_time = $time;
-            $projects{$current_project} += $work;
+        if (defined $oproject && $oproject eq "DANGLING") {
+            $projects{"$current_project (NOT checked out)"} = $projects{$current_project};
+            delete $projects{$current_project};
         }
     }
 
+    # Print the last day (in the loop we're only printing when date changes)
     if (length($current_date)) {
 	$self->{printer}->print_day($current_date, $start_time, $end_time, $work_total, %projects);
 	$work_year_to_date += $work_total;
