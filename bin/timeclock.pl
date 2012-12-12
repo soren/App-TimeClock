@@ -103,11 +103,11 @@ Print short usages information and exits.
 
 =item B<--man>
 
-Displays the manual and exists.
+Displays the manual and exits.
 
 =item B<--version>
 
-Displays the version number and copyright information and exists.
+Displays the version number and copyright information and exits.
 
 =item B<--html>
 
@@ -151,6 +151,7 @@ L<timeclock.pl> into Emacs:
    "Creates and displays a daily report of timeclock entries."
    (interactive)
    (let ((process-connection-type nil)   ; Use a pipe.
+         (command-name "timeclock")
          (buffer-name "*timeclock daily report*")
          (script-name "timeclock.pl"))
      (when (get-buffer buffer-name)
@@ -195,16 +196,17 @@ automatically be notified of progress on your bug as I make changes.
 
 Copyright (C) 2012 Søren Lund
 
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; version 2 dated June, 1991 or at your option
-any later version.
+This file is part of App::TimeClock.
 
-This program is distributed in the hope that it will be useful,
+App::TimeClock is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+App::TimeClock is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
-A copy of the GNU General Public License is available in the source tree;
-if not, write to the Free Software Foundation, Inc.,
-59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+You should have received a copy of the GNU General Public License
+along with App::TimeClock.  If not, see <http://www.gnu.org/licenses/>.
