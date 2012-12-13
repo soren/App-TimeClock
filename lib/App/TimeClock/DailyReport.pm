@@ -74,6 +74,80 @@ Sets the time when the report is executed.
 =cut
 sub _set_report_time { $_[0]->{_report_time} = $_[0]->_timelocal($_[1], $_[2]) }
 
+=item _read_line()
+
+Reads a set of check in and check out lines.
+
+If end of file is reached after reading the check in line, then
+reading of the check out line is skipped.
+
+=cut
+sub _read_lines {
+
+    my ($self, $file) = (@_);
+    my ($iline, $oline) = (undef, undef);
+
+    die "Prematurely end of file." if eof($file);
+
+    chomp($iline = <$file>);
+    die "Expected check in in line $." unless $iline =~ /^i /;
+        
+    if (not eof($file)) {
+        chomp($oline = <$file>);
+        die "Excepted check out in line $." unless $oline =~ /^o /;
+    }
+
+    return ($iline, $oline);
+}
+
+=item _parse_lines()
+
+Parses a set of check in and check out lines.
+
+The lines are split on space and should contain the following four
+fields:
+
+=over
+
+=item state 
+
+is either 'i' - check in or 'o' - check out.
+
+=cut
+
+=item date 
+
+is formatted as YYYY/MM//DD
+
+=cut
+
+=item time
+
+is formatted as HH:MM:SS
+
+=cut
+
+=item project
+
+is then name of the project/task and is only required when checking in.
+
+=cut
+
+=back
+
+=cut
+sub _parse_lines {
+    my ($self, $file) = (@_);
+    my ($iline, $oline) = $self->_read_lines($file);
+
+    my ($idate, $itime, $iproject) = (split(/ /, $iline, 4))[1..3];
+    my ($odate, $otime, $oproject) = (defined $oline) ? (split(/ /, $oline, 4))[1..3] :
+      (strftime("%Y/%m/%d", localtime($self->_get_report_time)),
+       strftime("%H:%M:%S", localtime($self->_get_report_time)), "DANGLING");
+       
+    return ($idate, $itime, $iproject, $odate, $otime, $oproject);
+}
+
 =item execute()
 
 Opens the timelog file starts parsing it, looping over each day and
@@ -83,8 +157,8 @@ calling print_day() for each.
 sub execute {
     my $self = shift;
 
-    open FILE, '<', $self->{timelog} or die "$!\n";
-    binmode FILE, ':utf8';
+    open $file, '<', $self->{timelog} or die "$!\n";
+    binmode $file, ':utf8';
 
     my %projects;
     my ($current_project, $current_date, $work, $work_total);
@@ -96,27 +170,8 @@ sub execute {
 
     $self->{printer}->print_header;
 
-    while (not eof(FILE)) {
-        chomp(my $iline = <FILE>);
-        die "Expected check in in line $." unless $iline =~ /^i /;
-        
-        my $oline = undef;
-        if (not eof(FILE)) {
-            chomp($oline = <FILE>);
-            die "Excepted check out in line $." unless $oline =~ /^o /;
-        }
-
-        # Split the line, it should contain:
-        #
-        # - state is either 'i' - check in or 'o' - check out.
-        # - date is formatted as YYYY/MM//DD
-        # - time is formatted as HH:MM:SS
-        # - project is then name of the project/task and is only required when checking in.
-        #
-        my ($idate, $itime, $iproject) = (split(/ /, $iline, 4))[1..3];
-        my ($odate, $otime, $oproject) = (defined $oline) ? (split(/ /, $oline, 4))[1..3] :
-          (strftime("%Y/%m/%d", localtime($self->_get_report_time)),
-           strftime("%H:%M:%S", localtime($self->_get_report_time)), "DANGLING");
+    while (not eof($file)) {
+        my ($idate, $itime, $iproject, $odate, $otime, $oproject) = $self->_parse_lines($file);
 
         if (!length($current_date)) {
             # First check in, set the current date and start time
