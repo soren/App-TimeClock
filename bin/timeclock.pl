@@ -2,6 +2,7 @@
 
 use strict;
 use warnings;
+use utf8;
 
 use File::Basename qw(basename);
 use Pod::Usage;
