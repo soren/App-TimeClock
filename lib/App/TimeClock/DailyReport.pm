@@ -2,7 +2,6 @@ package App::TimeClock::DailyReport;
 
 use POSIX qw(difftime strftime);
 use Time::Local;
-use Time::Piece;
 
 =head1 NAME
 
