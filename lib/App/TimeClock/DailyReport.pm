@@ -60,12 +60,14 @@ sub _timelocal {
     return timelocal($sec, $min, $hours, $mday, $mon-1, $year);
 };
 
+
 =item _get_report_time()
 
 Returns the time when the report was executed.
 
 =cut
 sub _get_report_time { $_[0]->{_report_time} || time }
+
 
 =item _set_report_time()
 
@@ -74,7 +76,8 @@ Sets the time when the report is executed.
 =cut
 sub _set_report_time { $_[0]->{_report_time} = $_[0]->_timelocal($_[1], $_[2]) }
 
-=item _read_line()
+
+=item _read_lines()
 
 Reads a set of check in and check out lines.
 
@@ -89,16 +92,18 @@ sub _read_lines {
 
     die "Prematurely end of file." if eof($file);
 
-    chomp($iline = <$file>);
+    ($iline = <$file>) =~ s/\R//g;
+
     die "Expected check in in line $." unless $iline =~ /^i /;
         
     if (not eof($file)) {
-        chomp($oline = <$file>);
+        ($oline = <$file>) =~ s/\R//g;
         die "Excepted check out in line $." unless $oline =~ /^o /;
     }
 
     return ($iline, $oline);
 }
+
 
 =item _parse_lines()
 
@@ -148,6 +153,7 @@ sub _parse_lines {
     return ($idate, $itime, $iproject, $odate, $otime, $oproject);
 }
 
+
 =item execute()
 
 Opens the timelog file starts parsing it, looping over each day and
@@ -157,44 +163,42 @@ calling print_day() for each.
 sub execute {
     my $self = shift;
 
-    open $file, '<', $self->{timelog} or die "$!\n";
-    binmode $file, ':utf8';
+    open (my $file, "<:encoding(UTF-8)", $self->{timelog}) or die "$!\n";
 
     my %projects;
-    my ($current_project, $current_date, $work, $work_total);
-    my ($start_time, $end_time);
+    my ($current_project, $current_date, $work, $day_hours);
+    my ($day_start, $day_end);
     my ($work_year_to_date, $day_count) = (0,0);
 
-    $current_date = "";
-    $work_total = 0;
+    $day_hours = 0;
 
     $self->{printer}->print_header;
 
     while (not eof($file)) {
         my ($idate, $itime, $iproject, $odate, $otime, $oproject) = $self->_parse_lines($file);
 
-        if (!length($current_date)) {
+        if (not defined $current_date) {
             # First check in, set the current date and start time
             $current_date = $idate;
-            $start_time = $itime;
+            $day_start = $itime;
         } elsif ($current_date ne $idate) {
             # It's a new day, print the current day, update totals and reset variables
-            $self->{printer}->print_day($current_date, $start_time, $end_time, $work_total, %projects);
+            $self->{printer}->print_day($current_date, $day_start, $day_end, $day_hours, %projects);
 
-            $work_year_to_date += $work_total;
+            $work_year_to_date += $day_hours;
             $day_count++;
 
-            $work_total = 0;
+            $day_hours = 0;
             $current_date = $idate;
-            $start_time = $itime;
+            $day_start = $itime;
             %projects = ();
-            $end_time = "";
+            $day_end = "";
         }
 
         $current_project = $iproject;
         $work = difftime($self->_timelocal($odate, $otime), $self->_timelocal($idate, $itime)) / 60 / 60;
-        $work_total += $work;
-        $end_time = $otime;
+        $day_hours += $work;
+        $day_end = $otime;
         $projects{$current_project} += $work;
 
         if (defined $oproject && $oproject eq "DANGLING") {
@@ -204,9 +208,9 @@ sub execute {
     }
 
     # Print the last day (in the loop we're only printing when date changes)
-    if (length($current_date)) {
-	$self->{printer}->print_day($current_date, $start_time, $end_time, $work_total, %projects);
-	$work_year_to_date += $work_total;
+    if (defined $current_date) {
+	$self->{printer}->print_day($current_date, $day_start, $day_end, $day_hours, %projects);
+	$work_year_to_date += $day_hours;
 	$day_count++;
     }
 

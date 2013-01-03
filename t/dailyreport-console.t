@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 15;
+use Test::More tests => 16;
 
 use FindBin;
 use File::Temp qw(tempfile);
@@ -65,6 +65,11 @@ sub daily_report {
     is($report[16], "TOTAL = 8.14 hours", "Total hours worked");
     is($report[17], "PERIOD = 1 days", "Period worked");
     is($report[18], "AVERAGE = 8.14 hours/day");
+}
+
+{
+    my ($size, @report) = daily_report("timelog.dos");
+    is($report[ 9], "| Afternoon                                                    |  3.05 |", "Afternoon project");
 }
 
 {
