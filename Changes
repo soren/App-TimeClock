@@ -30,3 +30,8 @@ Revision history for App-TimeClock
         Removed dependency on Time::Piece, making us compatible with older versions of Perl.
         Updated to GPL v3 in source files. 
         Fixed a few typos in the documentation.
+
+0.08    2013-03-09 21:32
+        Version and copyright information now prints correctly using UTF-8.
+        Now supports DOS formatted timelogs (CR+NL) even on Linux/Unix and vice versa.
+        Changed from RT to GitHub for issue tracking.
