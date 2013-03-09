@@ -36,6 +36,7 @@ An object derived from L<App::TimeClock::PrinterInterface>. Will die if not.
 
 =cut
 sub new {
+    die "must supply (timelog, printer) arguments to constructor" if $#_ != 2;
     my $class = shift;
     my $self = {
         timelog => shift,
