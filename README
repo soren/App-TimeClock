@@ -21,8 +21,8 @@ perldoc command.
 
 You can also look for information at:
 
-    RT, CPAN's request tracker (report bugs here)
-        http://rt.cpan.org/NoAuth/Bugs.html?Dist=App-TimeClock
+    Issue tracker on Github (report bugs here)
+        https://github.com/soren/App-TimeClock/issues
 
     AnnoCPAN, Annotated CPAN documentation
         http://annocpan.org/dist/App-TimeClock
