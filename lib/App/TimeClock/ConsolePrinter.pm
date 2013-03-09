@@ -111,7 +111,7 @@ L<timeclock.pl>
 
 =head1 COPYRIGHT
 
-Copyright (C) 2012 Søren Lund
+Copyright (C) 2012-2013 Søren Lund
 
 This file is part of App::TimeClock.
 
