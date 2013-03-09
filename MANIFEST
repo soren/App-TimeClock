@@ -15,7 +15,6 @@ META.json
 META.yml
 README
 t/00-load.t
-t/boilerplate.t
 t/dailyreport-console.t
 t/manifest.t
 t/pod-coverage.t
