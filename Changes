@@ -35,3 +35,7 @@ Revision history for App-TimeClock
         Version and copyright information now prints correctly using UTF-8.
         Now supports DOS formatted timelogs (CR+NL) even on Linux/Unix and vice versa.
         Changed from RT to GitHub for issue tracking.
+
+0.09   2013-03-11 08:53
+       Included test file which was forgotten in previous release.
+       Updated copyright year in main documentation.
