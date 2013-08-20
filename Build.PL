@@ -17,7 +17,8 @@ my $builder = Module::Build->new(
     add_to_cleanup      => [ 'App-TimeClock-*' ],
     create_makefile_pl => 'traditional',
     meta_merge => {
-        resources => { bugtracker => 'https://github.com/soren/App-TimeClock/issues' }
+        resources => { bugtracker => 'https://github.com/soren/App-TimeClock/issues',
+                       repository => 'https://github.com/soren/App-TimeClock/'}
        }
 );
 
