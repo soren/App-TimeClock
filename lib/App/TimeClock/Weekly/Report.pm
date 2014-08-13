@@ -1,16 +1,16 @@
-package App::TimeClock::DailyReport;
+package App::TimeClock::Weekly::Report;
 
 use POSIX qw(difftime strftime);
 use Time::Local;
 
 =head1 NAME
 
-App::TimeClock::DailyReport
+App::TimeClock::Weekly::Report
 
 =head1 DESCRIPTION
 
 Can parse the timelog and generate a report using an instance of a
-L<App::TimeClock::PrinterInterface>.
+L<App::TimeClock::Weekly::PrinterInterface>.
 
 =head2 METHODS
 
@@ -18,7 +18,7 @@ L<App::TimeClock::PrinterInterface>.
 
 =item new($timelog, $printer)
 
-Initializes a new L<App::TimeClock::DailyReport> object.
+Initializes a new L<App::TimeClock::Weekly::Report> object.
 
 Two parameters are required:
 
@@ -30,7 +30,7 @@ Must point to a timelog file. Will die if not.
 
 =item B<$printer>
 
-An object derived from L<App::TimeClock::PrinterInterface>. Will die if not.
+An object derived from L<App::TimeClock::Weekly::PrinterInterface>. Will die if not.
 
 =back
 
@@ -43,7 +43,7 @@ sub new {
         printer => shift,
     };
     die "timelog ($self->{timelog}) does not exist" unless -f $self->{timelog} and -r $self->{timelog};
-    die "printer is not a PrinterInterface" unless $self->{printer}->isa("App::TimeClock::PrinterInterface");
+    die "printer is not a PrinterInterface" unless $self->{printer}->isa("App::TimeClock::Weekly::PrinterInterface");
     bless $self, $class;
 };
 
@@ -166,56 +166,11 @@ sub execute {
 
     open (my $file, "<:encoding(UTF-8)", $self->{timelog}) or die "$!\n";
 
-    my %projects;
-    my ($current_project, $current_date, $work, $day_hours);
-    my ($day_start, $day_end);
-    my ($work_year_to_date, $day_count) = (0,0);
-
-    $day_hours = 0;
-
     $self->{printer}->print_header;
 
-    while (not eof($file)) {
-        my ($idate, $itime, $iproject, $odate, $otime, $oproject) = $self->_parse_lines($file);
+	$self->{printer}->print_week();
 
-        if (not defined $current_date) {
-            # First check in, set the current date and start time
-            $current_date = $idate;
-            $day_start = $itime;
-        } elsif ($current_date ne $idate) {
-            # It's a new day, print the current day, update totals and reset variables
-            $self->{printer}->print_day($current_date, $day_start, $day_end, $day_hours, %projects);
-
-            $work_year_to_date += $day_hours;
-            $day_count++;
-
-            $day_hours = 0;
-            $current_date = $idate;
-            $day_start = $itime;
-            %projects = ();
-            $day_end = "";
-        }
-
-        $current_project = $iproject;
-        $work = difftime($self->_timelocal($odate, $otime), $self->_timelocal($idate, $itime)) / 60 / 60;
-        $day_hours += $work;
-        $day_end = $otime;
-        $projects{$current_project} += $work;
-
-        if (defined $oproject && $oproject eq "DANGLING") {
-            $projects{"$current_project (NOT checked out)"} = $projects{$current_project};
-            delete $projects{$current_project};
-        }
-    }
-
-    # Print the last day (in the loop we're only printing when date changes)
-    if (defined $current_date) {
-	$self->{printer}->print_day($current_date, $day_start, $day_end, $day_hours, %projects);
-	$work_year_to_date += $day_hours;
-	$day_count++;
-    }
-
-    $self->{printer}->print_footer($work_year_to_date, $day_count);
+    $self->{printer}->print_footer();
 };
 1;
 
@@ -235,7 +190,7 @@ L<timeclock.pl>
 
 =head1 COPYRIGHT
 
-Copyright (C) 2012-2013 Søren Lund
+Copyright (C) 2012-2014 Søren Lund
 
 This file is part of App::TimeClock.
 

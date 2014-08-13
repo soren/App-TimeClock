@@ -1,19 +1,19 @@
-package App::TimeClock::PrinterInterface;
+package App::TimeClock::Daily::PrinterInterface;
 
 =head1 NAME
 
-App::TimeClock::PrinterInterface
+App::TimeClock::Daily::PrinterInterface
 
 =head1 DESCRIPTION
 
 Interface class. All printer objects given to
-L<App::TimeClock::DailyReport> constructor must be derived from
+L<App::TimeClock::Daily::Report> constructor must be derived from
 PrinterInterface.
 
 =head1 SYNOPSIS
 
- package App::TimeClock::MyPrinter;
- our @ISA = qw(App::TimeClock::PrinterInterface);
+ package App::TimeClock::Daily::MyPrinter;
+ our @ISA = qw(App::TimeClock::Daily::PrinterInterface);
  ...
  sub print_header {
      ...
@@ -111,7 +111,7 @@ L<timeclock.pl>
 
 =head1 COPYRIGHT
 
-Copyright (C) 2012-2013 Søren Lund
+Copyright (C) 2012-2014 Søren Lund
 
 This file is part of App::TimeClock.
 

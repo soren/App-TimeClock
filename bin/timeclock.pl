@@ -8,11 +8,14 @@ use File::Basename qw(basename);
 use Pod::Usage;
 
 use App::TimeClock;
-use App::TimeClock::PrinterInterface;
-use App::TimeClock::ConsolePrinter;
-use App::TimeClock::HtmlPrinter;
-use App::TimeClock::CsvPrinter;
-use App::TimeClock::DailyReport;
+use App::TimeClock::Daily::PrinterInterface;
+use App::TimeClock::Daily::ConsolePrinter;
+use App::TimeClock::Daily::HtmlPrinter;
+use App::TimeClock::Daily::CsvPrinter;
+use App::TimeClock::Daily::Report;
+use App::TimeClock::Weekly::PrinterInterface;
+use App::TimeClock::Weekly::ConsolePrinter;
+use App::TimeClock::Weekly::Report;
 
 # Initialize/read configuration
 {
@@ -47,7 +50,7 @@ if ($#ARGV == 0) {
         pod2usage(-verbose => 2);
     } elsif ($ARGV[0] eq "--version") {        
         printf "\nThis is %s version %s\n", basename($0), App::TimeClock->VERSION();
-        print "\nCopyright (C) 2012-2013 Søren Lund\n";
+        print "\nCopyright (C) 2012-2014 Søren Lund\n";
         print "License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.\n";
         print "This is free software: you are free to change and redistribute it.\n";
         print "There is NO WARRANTY, to the extent permitted by law.\n";
@@ -55,21 +58,21 @@ if ($#ARGV == 0) {
 
         exit 0;
     } elsif ($ARGV[0] eq "--html") {
-        $printer = App::TimeClock::HtmlPrinter->new();
+        $printer = App::TimeClock::Daily::HtmlPrinter->new();
     } elsif  ($ARGV[0] eq "--csv") {
-        $printer = App::TimeClock::CsvPrinter->new();
+        $printer = App::TimeClock::Daily::CsvPrinter->new();
     } else {
         print "Unknown option '$ARGV[0]'\n";
         pod2usage(-verbose => 1);
     }
 } elsif ($#ARGV == -1) {
-    $printer = App::TimeClock::ConsolePrinter->new();
+    $printer = App::TimeClock::Daily::ConsolePrinter->new();
 } else {
     pod2usage(-verbose => 1);
 }
 
 # Finally create and execute the daily report.
-App::TimeClock::DailyReport->new($timelog, $printer)->execute();
+App::TimeClock::Daily::Report->new($timelog, $printer)->execute();
 
 __END__
 
@@ -195,7 +198,7 @@ automatically be notified of progress on your bug as I make changes.
 
 =head1 COPYRIGHT
 
-Copyright (C) 2012-2013 Søren Lund
+Copyright (C) 2012-2014 Søren Lund
 
 This file is part of App::TimeClock.
 

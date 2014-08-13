@@ -1,16 +1,16 @@
-package App::TimeClock::CsvPrinter;
+package App::TimeClock::Daily::CsvPrinter;
 
-our @ISA = qw(App::TimeClock::PrinterInterface);
+our @ISA = qw(App::TimeClock::Daily::PrinterInterface);
 
 use POSIX qw(strftime);
 
 =head1 NAME
 
-App::TimeClock::CsvPrinter
+App::TimeClock::Daily::CsvPrinter
 
 =head1 DESCRIPTION 
 
-Implements the L<App::TimeClock::PrinterInterface>. Will print total
+Implements the L<App::TimeClock::Daily::PrinterInterface>. Will print total
 for each day in a comma separated format.
 
 =head1 METHODS
@@ -66,7 +66,7 @@ L<timeclock.pl>
 
 =head1 COPYRIGHT
 
-Copyright (C) 2012-2013 Søren Lund
+Copyright (C) 2012-2014 Søren Lund
 
 This file is part of App::TimeClock.
 

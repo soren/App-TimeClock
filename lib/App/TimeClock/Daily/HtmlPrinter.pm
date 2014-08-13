@@ -1,16 +1,16 @@
-package App::TimeClock::HtmlPrinter;
+package App::TimeClock::Daily::HtmlPrinter;
 
-our @ISA = qw(App::TimeClock::PrinterInterface);
+our @ISA = qw(App::TimeClock::Daily::PrinterInterface);
 
 use POSIX qw(strftime);
 
 =head1 NAME
 
-App::TimeClock::HtmlPrinter
+App::TimeClock::Daily::HtmlPrinter
 
 =head1 DESCRIPTION
 
-Implements the L<App::TimeClock::PrinterInterface>. Will print a
+Implements the L<App::TimeClock::Daily::PrinterInterface>. Will print a
 (simple) HTML report with embedded (CSS) styling.
 
 =head1 METHODS
@@ -106,7 +106,7 @@ L<timeclock.pl>
 
 =head1 COPYRIGHT
 
-Copyright (C) 2012-2013 Søren Lund
+Copyright (C) 2012-2014 Søren Lund
 
 This file is part of App::TimeClock.
 
