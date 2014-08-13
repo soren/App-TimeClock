@@ -74,7 +74,7 @@ Called once at the start of a report.
 =cut
 sub print_header { shift->_must_implement; };
 
-=item print_day()
+=item print_week()
 
 Called for each week in the report.
 

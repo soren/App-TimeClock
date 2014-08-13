@@ -71,3 +71,6 @@
 
 # Avoid archives of this distribution
 \bApp-TimeClock-[\d\.\_]+
+
+# Avoid the Travis CI configuration
+\B\.travis.yml$

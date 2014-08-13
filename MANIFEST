@@ -3,11 +3,14 @@ Build.PL
 Changes
 ignore.txt
 lib/App/TimeClock.pm
-lib/App/TimeClock/ConsolePrinter.pm
-lib/App/TimeClock/CsvPrinter.pm
-lib/App/TimeClock/DailyReport.pm
-lib/App/TimeClock/HtmlPrinter.pm
-lib/App/TimeClock/PrinterInterface.pm
+lib/App/TimeClock/Daily/ConsolePrinter.pm
+lib/App/TimeClock/Daily/CsvPrinter.pm
+lib/App/TimeClock/Daily/Report.pm
+lib/App/TimeClock/Daily/HtmlPrinter.pm
+lib/App/TimeClock/Daily/PrinterInterface.pm
+lib/App/TimeClock/Weekly/PrinterInterface.pm
+lib/App/TimeClock/Weekly/ConsolePrinter.pm
+lib/App/TimeClock/Weekly/Report.pm
 LICENSE
 Makefile.PL
 MANIFEST			This list of files
@@ -25,3 +28,4 @@ t/timelog.dos
 t/timelog.empty
 t/timelog.open
 t/timelog.pastmidnight
+t/weeklyreport-console.t
