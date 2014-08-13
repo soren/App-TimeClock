@@ -192,9 +192,10 @@ L<http://www.emacswiki.org/emacs/TimeClock>
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-app-timeclock at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=App-TimeClock>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
+Please report any bugs at
+L<https://github.com/soren/App-TimeClock/issues>.  I will be notified,
+and then you'll automatically be notified of progress on your bug as I
+make changes.
 
 =head1 COPYRIGHT
 
