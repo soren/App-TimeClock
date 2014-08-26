@@ -76,6 +76,13 @@ App::TimeClock::Daily::Report->new($timelog, $printer)->execute();
 
 __END__
 
+=begin html
+
+<p><a href="https://travis-ci.org/soren/App-TimeClock"><img
+       src="https://travis-ci.org/soren/App-TimeClock.svg?branch=master"></a></p>
+
+=end html
+
 =head1 NAME
 
 timeclock.pl - a timeclock reporting utility
