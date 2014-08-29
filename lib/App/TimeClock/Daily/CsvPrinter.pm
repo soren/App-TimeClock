@@ -39,7 +39,7 @@ sub print_day {
     my ($year, $mon, $mday) = split(/\//, $date);
     my $wday = substr(strftime("%a", 0, 0, 0, $mday, $mon-1, $year-1900),0,3);
 
-    printf '"%s","%s","%s","%s",%f' . "\n",$wday, $date, $start, $end, $work;
+    $self->_print(sprintf('"%s","%s","%s","%s",%f' . "\n",$wday, $date, $start, $end, $work));
 };
 
 =item print_footer()
