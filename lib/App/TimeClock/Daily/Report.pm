@@ -43,7 +43,8 @@ sub new {
         printer => shift,
     };
     die "timelog ($self->{timelog}) does not exist" unless -f $self->{timelog} and -r $self->{timelog};
-    die "printer is not a PrinterInterface" unless $self->{printer}->isa("App::TimeClock::Daily::PrinterInterface");
+    die "printer is not a PrinterInterface" unless ref $self->{printer} and
+	  UNIVERSAL::can($self->{printer},'isa') and $self->{printer}->isa("App::TimeClock::Daily::PrinterInterface");
     bless $self, $class;
 };
 
