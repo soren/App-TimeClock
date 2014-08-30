@@ -75,6 +75,20 @@ sub _get_report_time { $_[0]->{_report_time} || time }
 
 Sets the time when the report is executed.
 
+Two parameters are required:
+
+=over
+
+=item B<$date>
+
+The date as a string in the following format YYYY/MM/DD
+
+=item B<$time>
+
+The time as a string in the following format HH:MM:SS
+
+=back
+
 =cut
 sub _set_report_time { $_[0]->{_report_time} = $_[0]->_timelocal($_[1], $_[2]) }
 
@@ -97,7 +111,7 @@ sub _read_lines {
     ($iline = <$file>) =~ s/\R//g;
 
     die "Expected check in in line $." unless $iline =~ /^i /;
-        
+
     if (not eof($file)) {
         ($oline = <$file>) =~ s/\R//g;
         die "Excepted check out in line $." unless $oline =~ /^o /;
