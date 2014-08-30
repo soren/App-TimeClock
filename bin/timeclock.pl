@@ -78,8 +78,13 @@ __END__
 
 =begin html
 
-<p><a href="https://travis-ci.org/soren/App-TimeClock"><img
-       src="https://travis-ci.org/soren/App-TimeClock.svg?branch=master"></a></p>
+<p>
+    <a href="https://travis-ci.org/soren/App-TimeClock"><img
+       src="https://travis-ci.org/soren/App-TimeClock.svg?branch=master"/></a>
+
+    <a href="https://coveralls.io/r/soren/App-TimeClock?branch=master"><img
+        src="https://coveralls.io/repos/soren/App-TimeClock/badge.png?branch=master"/></a>
+</p>
 
 =end html
 
