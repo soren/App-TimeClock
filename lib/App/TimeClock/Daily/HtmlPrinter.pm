@@ -29,8 +29,10 @@ L</print_footer()> method.
 
 =cut
 sub print_header {
+    my $self = shift;
     my $title = "Daily Report " . localtime();
-    print << "EOD";
+
+    $self->_print(<< "EOD");
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><meta http-equiv='Content-Type' content='text/html;charset=utf-8'/><title>$title</title>
@@ -63,14 +65,13 @@ sub print_day {
     my ($year, $mon, $mday) = split(/\//, $date);
     my $wday = substr(strftime("%a", 0, 0, 0, $mday, $mon-1, $year-1900),0,3);
 
-    printf "<table><caption>%3s %s (%s - %s)</caption>\n", $wday, $date, $start, $end;
-    printf "<tr><th>Total Daily Hours</th><th class='N'>%5.2f</th></tr>\n", $work;
+    $self->_print(sprintf("<table><caption>%3s %s (%s - %s)</caption>\n", $wday, $date, $start, $end));
+    $self->_print(sprintf("<tr><th>Total Daily Hours</th><th class='N'>%5.2f</th></tr>\n", $work));
 
     foreach my $k (sort keys %projects) {
-        printf("<tr><td>%-60s</td><td class='N'>%5.2f</td></tr>\n",
-               $k, $projects{$k});
+        $self->_print(sprintf("<tr><td>%-60s</td><td class='N'>%5.2f</td></tr>\n", $k, $projects{$k}));
     }
-    print "</table>\n";
+    $self->_print("</table>\n");
 };
 
 =item print_footer()
@@ -81,12 +82,12 @@ the body and html tags.
 =cut
 sub print_footer {
     my ($self, $work_year_to_date, $day_count) = (@_);
-    print "<p class='totals'>";
-    printf "TOTAL = %.2f<br/>", $work_year_to_date;
-    printf "PERIOD = %d days<br/>", $day_count;
-    printf "AVG. DAY = %.2f<br/>", $day_count > 0 ? $work_year_to_date / $day_count : 0;
-    print "</p>\n";
-    print "</body></html>\n";
+    $self->_print("<p class='totals'>");
+    $self->_print(sprintf("TOTAL = %.2f<br/>", $work_year_to_date));
+    $self->_print(sprintf("PERIOD = %d days<br/>", $day_count));
+    $self->_print(sprintf("AVG. DAY = %.2f<br/>", $day_count > 0 ? $work_year_to_date / $day_count : 0));
+    $self->_print("</p>\n");
+    $self->_print("</body></html>\n");
 };
 1;
 
