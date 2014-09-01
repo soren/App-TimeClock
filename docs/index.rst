@@ -3,8 +3,15 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to App::TimeClock's documentation!
-==========================================
+App::TimeClock User Guide
+=========================
+
+App::TimeClock is a simple timeclock reporting tool. It's writting in
+Perl, which means you'll need Perl installed on your machine.
+
+App::TimeClock generates reports based on a timelog. The easiest way
+to generate the timelog is by using GNU/Emacs and the timeclock mode.
+
 
 Contents:
 
