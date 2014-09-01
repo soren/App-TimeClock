@@ -1,6 +1,6 @@
-package App::TimeClock::ConsolePrinter;
+package App::TimeClock::Daily::ConsolePrinter;
 
-our @ISA = qw(App::TimeClock::PrinterInterface);
+our @ISA = qw(App::TimeClock::Daily::PrinterInterface);
 
 use POSIX qw(strftime);
 
@@ -11,11 +11,11 @@ our $hrline =  '+' . ('-' x 62) . '+' . ('-' x 7) . '+';
 
 =head1 NAME
 
-App::TimeClock::ConsolePrinter
+App::TimeClock::Daily::ConsolePrinter
 
 =head1 DESCRIPTION
 
-Implements the L<App::TimeClock::PrinterInterface>. Will print a simple ASCII
+Implements the L<App::TimeClock::Daily::PrinterInterface>. Will print a simple ASCII
 format. Suitable for using in a console/terminal.
 
 =head1 METHODS
@@ -111,7 +111,7 @@ L<timeclock.pl>
 
 =head1 COPYRIGHT
 
-Copyright (C) 2012-2013 Søren Lund
+Copyright (C) 2012-2014 Søren Lund
 
 This file is part of App::TimeClock.
 

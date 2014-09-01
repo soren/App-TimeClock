@@ -1,16 +1,16 @@
-package App::TimeClock::CsvPrinter;
+package App::TimeClock::Daily::CsvPrinter;
 
-our @ISA = qw(App::TimeClock::PrinterInterface);
+our @ISA = qw(App::TimeClock::Daily::PrinterInterface);
 
 use POSIX qw(strftime);
 
 =head1 NAME
 
-App::TimeClock::CsvPrinter
+App::TimeClock::Daily::CsvPrinter
 
 =head1 DESCRIPTION 
 
-Implements the L<App::TimeClock::PrinterInterface>. Will print total
+Implements the L<App::TimeClock::Daily::PrinterInterface>. Will print total
 for each day in a comma separated format.
 
 =head1 METHODS
@@ -39,7 +39,7 @@ sub print_day {
     my ($year, $mon, $mday) = split(/\//, $date);
     my $wday = substr(strftime("%a", 0, 0, 0, $mday, $mon-1, $year-1900),0,3);
 
-    printf '"%s","%s","%s","%s",%f' . "\n",$wday, $date, $start, $end, $work;
+    $self->_print(sprintf('"%s","%s","%s","%s",%f' . "\n",$wday, $date, $start, $end, $work));
 };
 
 =item print_footer()
@@ -66,7 +66,7 @@ L<timeclock.pl>
 
 =head1 COPYRIGHT
 
-Copyright (C) 2012-2013 Søren Lund
+Copyright (C) 2012-2014 Søren Lund
 
 This file is part of App::TimeClock.
 

@@ -1,19 +1,19 @@
-package App::TimeClock::PrinterInterface;
+package App::TimeClock::Weekly::PrinterInterface;
 
 =head1 NAME
 
-App::TimeClock::PrinterInterface
+App::TimeClock::Weekly::PrinterInterface
 
 =head1 DESCRIPTION
 
 Interface class. All printer objects given to
-L<App::TimeClock::DailyReport> constructor must be derived from
+L<App::TimeClock::Weekly::Report> constructor must be derived from
 PrinterInterface.
 
 =head1 SYNOPSIS
 
- package App::TimeClock::MyPrinter;
- our @ISA = qw(App::TimeClock::PrinterInterface);
+ package App::TimeClock::Weekly::MyPrinter;
+ our @ISA = qw(App::TimeClock::Weekly::PrinterInterface);
  ...
  sub print_header {
      ...
@@ -58,7 +58,11 @@ sub _print {
 Get the file handle used by L<_print>.
 
 =cut
-sub _get_output_fh { $_[0]->{_output}  || \*STDOUT }
+sub _get_output_fh {
+    # When testing _output will always be set, i.e. skip coverage check of right condition
+    # uncoverable condition right
+    return $_[0]->{_output}  || \*STDOUT;
+}
 
 =item _set_ouput_fh()
 
@@ -74,12 +78,12 @@ Called once at the start of a report.
 =cut
 sub print_header { shift->_must_implement; };
 
-=item print_day()
+=item print_week()
 
-Called for each day in the report.
+Called for each week in the report.
 
 =cut
-sub print_day { shift->_must_implement; };
+sub print_week { shift->_must_implement; };
 
 =item print_footer()
 
@@ -111,7 +115,7 @@ L<timeclock.pl>
 
 =head1 COPYRIGHT
 
-Copyright (C) 2012-2013 Søren Lund
+Copyright (C) 2012-2014 Søren Lund
 
 This file is part of App::TimeClock.
 

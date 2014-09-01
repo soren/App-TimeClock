@@ -1,16 +1,16 @@
-package App::TimeClock::DailyReport;
+package App::TimeClock::Daily::Report;
 
 use POSIX qw(difftime strftime);
 use Time::Local;
 
 =head1 NAME
 
-App::TimeClock::DailyReport
+App::TimeClock::Daily::Report
 
 =head1 DESCRIPTION
 
 Can parse the timelog and generate a report using an instance of a
-L<App::TimeClock::PrinterInterface>.
+L<App::TimeClock::Daily::PrinterInterface>.
 
 =head2 METHODS
 
@@ -18,7 +18,7 @@ L<App::TimeClock::PrinterInterface>.
 
 =item new($timelog, $printer)
 
-Initializes a new L<App::TimeClock::DailyReport> object.
+Initializes a new L<App::TimeClock::Daily::Report> object.
 
 Two parameters are required:
 
@@ -30,7 +30,7 @@ Must point to a timelog file. Will die if not.
 
 =item B<$printer>
 
-An object derived from L<App::TimeClock::PrinterInterface>. Will die if not.
+An object derived from L<App::TimeClock::Daily::PrinterInterface>. Will die if not.
 
 =back
 
@@ -43,7 +43,8 @@ sub new {
         printer => shift,
     };
     die "timelog ($self->{timelog}) does not exist" unless -f $self->{timelog} and -r $self->{timelog};
-    die "printer is not a PrinterInterface" unless $self->{printer}->isa("App::TimeClock::PrinterInterface");
+    die "printer is not a PrinterInterface" unless ref $self->{printer} and
+	  UNIVERSAL::can($self->{printer},'isa') and $self->{printer}->isa("App::TimeClock::Daily::PrinterInterface");
     bless $self, $class;
 };
 
@@ -74,6 +75,20 @@ sub _get_report_time { $_[0]->{_report_time} || time }
 
 Sets the time when the report is executed.
 
+Two parameters are required:
+
+=over
+
+=item B<$date>
+
+The date as a string in the following format YYYY/MM/DD
+
+=item B<$time>
+
+The time as a string in the following format HH:MM:SS
+
+=back
+
 =cut
 sub _set_report_time { $_[0]->{_report_time} = $_[0]->_timelocal($_[1], $_[2]) }
 
@@ -96,7 +111,7 @@ sub _read_lines {
     ($iline = <$file>) =~ s/\R//g;
 
     die "Expected check in in line $." unless $iline =~ /^i /;
-        
+
     if (not eof($file)) {
         ($oline = <$file>) =~ s/\R//g;
         die "Excepted check out in line $." unless $oline =~ /^o /;
@@ -235,7 +250,7 @@ L<timeclock.pl>
 
 =head1 COPYRIGHT
 
-Copyright (C) 2012-2013 Søren Lund
+Copyright (C) 2012-2014 Søren Lund
 
 This file is part of App::TimeClock.
 

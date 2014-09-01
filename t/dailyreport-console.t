@@ -5,11 +5,11 @@ use Test::More tests => 16;
 use FindBin;
 use File::Temp qw(tempfile);
 
-use App::TimeClock::DailyReport;
-use App::TimeClock::PrinterInterface;
-use App::TimeClock::ConsolePrinter;
+use App::TimeClock::Daily::Report;
+use App::TimeClock::Daily::PrinterInterface;
+use App::TimeClock::Daily::ConsolePrinter;
 
-my $printer = App::TimeClock::ConsolePrinter->new();
+my $printer = App::TimeClock::Daily::ConsolePrinter->new();
 
 sub find_timelog {
     return "$FindBin::Bin/" . shift;
@@ -21,7 +21,7 @@ sub daily_report {
 
     $printer->_set_output_fh($fh);
 
-    my $report = App::TimeClock::DailyReport->new(find_timelog($timelog), $printer);
+    my $report = App::TimeClock::Daily::Report->new(find_timelog($timelog), $printer);
     $report->_set_report_time("2012/03/15", "16:00:00");
     $report->execute();
 
