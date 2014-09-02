@@ -12,28 +12,28 @@ Introduction
 TimeClock is a simple time clock reporting tool for the GNU/Emacs
 timelock mode. It's a command line tool that reads a timelog and
 prints a report to the console. By default the report looks something
-like this:::
+like this::
 
-|
-|                 =====================================
-|                 Daily Report Mon Dec  3 16:52:44 2012
-|                 =====================================
-|
-|* Thu 2012/03/15 (08:07:06 - 16:15:14) *
-|+--------------------------------------------------------------+-------+
-|| Total Daily Hours                                            |  8.14 |
-|+--------------------------------------------------------------+-------+
-|| Afternoon                                                    |  3.05 |
-|+--------------------------------------------------------------+-------+
-|| FirstCheckIn                                                 |  4.07 |
-|+--------------------------------------------------------------+-------+
-|| Lunch                                                        |  1.02 |
-|+--------------------------------------------------------------+-------+
-|
-|TOTAL = 8.14 hours
-|PERIOD = 1 days
-|AVERAGE = 8.14 hours/day
-|
+    
+                     =====================================
+                     Daily Report Mon Dec  3 16:52:44 2012
+                     =====================================
+    
+    * Thu 2012/03/15 (08:07:06 - 16:15:14) *
+    +--------------------------------------------------------------+-------+
+    | Total Daily Hours                                            |  8.14 |
+    +--------------------------------------------------------------+-------+
+    | Afternoon                                                    |  3.05 |
+    +--------------------------------------------------------------+-------+
+    | FirstCheckIn                                                 |  4.07 |
+    +--------------------------------------------------------------+-------+
+    | Lunch                                                        |  1.02 |
+    +--------------------------------------------------------------+-------+
+    
+    TOTAL = 8.14 hours
+    PERIOD = 1 days
+    AVERAGE = 8.14 hours/day
+    
 
 But it is also possible to generate a report formatted asa HTML or
 CSV.
@@ -44,8 +44,7 @@ Installing TimeClock
 TimeClock is written in Perl. If you already have Perl installed you
 can install TimeClock using CPAN::
 
-|cpan App::TimeClock
-
+    $ cpan App::TimeClock
 
 
 Contents:
