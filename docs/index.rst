@@ -9,10 +9,10 @@ TimeClock User Guide
 Introduction
 ------------
 
-TimeClock is a simple time clock reporting tool for the GNU/Emacs
-timelock mode. It's a command line tool that reads a timelog and
-prints a report to the console. By default the report looks something
-like this::
+TimeClock [#fullname]_ is a simple time clock reporting tool for the
+GNU/Emacs timelock mode. It's a command line tool that reads a timelog
+and prints a report to the console. By default the report looks
+something like this::
 
     
                      =====================================
@@ -47,17 +47,28 @@ can install TimeClock using CPAN::
     $ cpan App::TimeClock
 
 
-Contents:
+License and Copyright
+---------------------
 
-.. toctree::
-   :maxdepth: 2
+Copyright (C) 2012-2014 Søren Lund
 
+This file is part of App::TimeClock.
 
+App::TimeClock is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-Indices and tables
-==================
+App::TimeClock is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+You should have received a copy of the GNU General Public License
+along with App::TimeClock.  If not, see <http://www.gnu.org/licenses/>.
 
+.. rubric:: Footnotes
+
+.. [#fullname] The full name of this application is
+               **App::TimeClock**, but in most of this documentation
+               I'm using the simpler name **TimeClock**.
