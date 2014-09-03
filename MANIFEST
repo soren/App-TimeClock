@@ -1,6 +1,11 @@
 bin/timeclock.pl
 Build.PL
 Changes
+docs/_static/THIS_DIR_IS_EMPTY
+docs/_templates/THIS_DIR_IS_EMPTY
+docs/conf.py
+docs/index.rst
+docs/make.bat
 ignore.txt
 lib/App/TimeClock.pm
 lib/App/TimeClock/Daily/ConsolePrinter.pm
@@ -37,4 +42,3 @@ t/timelog.empty
 t/timelog.open
 t/timelog.pastmidnight
 t/weeklyreport-console.t
-

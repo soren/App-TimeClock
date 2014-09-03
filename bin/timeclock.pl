@@ -84,6 +84,10 @@ __END__
 
     <a href="https://coveralls.io/r/soren/App-TimeClock?branch=master"><img
         src="https://coveralls.io/repos/soren/App-TimeClock/badge.png?branch=master"/></a>
+
+    <a href="https://readthedocs.org/projects/apptimeclock/?badge=latest"><img
+        src="https://readthedocs.org/projects/apptimeclock/badge/?version=latest"/>
+</a>
 </p>
 
 =end html
