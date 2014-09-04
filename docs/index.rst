@@ -14,9 +14,6 @@ TimeClock [#fullname]_ is a simple time clock reporting tool for the
 timelog and prints a report to the console. By default the report
 looks something like this::
 
-.. _GNU/Emacs: https://www.gnu.org/software/emacs/
-.. _`timeclock`:  http://www.emacswiki.org/emacs/TimeClock
-
                      =====================================
                      Daily Report Mon Dec  3 16:52:44 2012
                      =====================================
@@ -39,6 +36,9 @@ looks something like this::
 
 But it is also possible to generate a report formatted asa HTML or
 CSV.
+
+.. _GNU/Emacs: https://www.gnu.org/software/emacs/
+.. _`timeclock`:  http://www.emacswiki.org/emacs/TimeClock
 
 Installing TimeClock
 --------------------
