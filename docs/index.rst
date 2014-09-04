@@ -6,11 +6,12 @@
 TimeClock User Guide
 ====================
 
+
 Introduction
 ------------
 
 TimeClock [#fullname]_ is a simple time clock reporting tool for the
-`GNU/Emacs`_ mode: `timeclock`_. It's a command line tool that reads a
+`GNU/Emacs`_ mode: timeclock_. It's a command line tool that reads a
 timelog and prints a report to the console. By default the report
 looks something like this::
 
@@ -40,13 +41,16 @@ CSV.
 .. _GNU/Emacs: https://www.gnu.org/software/emacs/
 .. _`timeclock`:  http://www.emacswiki.org/emacs/TimeClock
 
+
 Installing TimeClock
 --------------------
 
-TimeClock is written in Perl. If you already have Perl installed you
+TimeClock is written in Perl_. If you already have Perl installed you
 can install TimeClock using CPAN::
 
     $ cpan App::TimeClock
+
+.. _Perl: http://www.perl.org/
 
 
 License and Copyright
