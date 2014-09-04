@@ -35,12 +35,8 @@ looks something like this::
     AVERAGE = 8.14 hours/day
     
 
-But it is also possible to generate a report formatted asa HTML or
+But it is also possible to generate a report formatted as HTML or
 CSV.
-
-.. _GNU/Emacs: https://www.gnu.org/software/emacs/
-.. _`timeclock`:  http://www.emacswiki.org/emacs/TimeClock
-
 
 Installing TimeClock
 --------------------
@@ -50,7 +46,18 @@ can install TimeClock using CPAN::
 
     $ cpan App::TimeClock
 
-.. _Perl: http://www.perl.org/
+Configuration
+-------------
+
+If you haven't changed your `GNU/Emacs`_ setup, no configuration is
+needed. The script will read your timelog file from the default
+location which is ``~/.timelog``
+
+If you have changed the location of the timelog file (e.g placing it
+in a Dropbox folder), you can create the file ``~/.timeclockrc`` and
+define the location of the timelog file there. Example::
+
+    $timelog = "$ENV{HOME}/Dropbox/timelog";
 
 
 License and Copyright
@@ -78,3 +85,7 @@ along with App::TimeClock.  If not, see <http://www.gnu.org/licenses/>.
 .. [#fullname] The full name of this application is
                **App::TimeClock**, but in most of this documentation
                I'm using the simpler name **TimeClock**.
+
+.. _GNU/Emacs: https://www.gnu.org/software/emacs/
+.. _`timeclock`:  http://www.emacswiki.org/emacs/TimeClock
+.. _Perl: http://www.perl.org/
