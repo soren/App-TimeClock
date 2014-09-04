@@ -10,12 +10,13 @@ Introduction
 ------------
 
 TimeClock [#fullname]_ is a simple time clock reporting tool for the
-`GNU/Emacs <https://www.gnu.org/software/emacs/>` `timeclock mode
-<http://www.emacswiki.org/emacs/TimeClock>`. It's a command line tool
-that reads a timelog and prints a report to the console. By default
-the report looks something like this::
+`GNU/Emacs`_ mode: `timeclock`_. It's a command line tool that reads a
+timelog and prints a report to the console. By default the report
+looks something like this::
 
-    
+.. _GNU/Emacs: https://www.gnu.org/software/emacs/
+.. _`timeclock`:  http://www.emacswiki.org/emacs/TimeClock
+
                      =====================================
                      Daily Report Mon Dec  3 16:52:44 2012
                      =====================================
