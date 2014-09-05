@@ -58,7 +58,11 @@ sub _print {
 Get the file handle used by L<_print>.
 
 =cut
-sub _get_output_fh { $_[0]->{_output}  || \*STDOUT }
+sub _get_output_fh {
+    # When testing _output will always be set, i.e. skip coverage check of right condition
+    # uncoverable condition right
+    return $_[0]->{_output}  || \*STDOUT;
+}
 
 =item _set_ouput_fh()
 
