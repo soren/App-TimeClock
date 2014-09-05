@@ -87,7 +87,9 @@ __END__
 
     <a href="https://readthedocs.org/projects/apptimeclock/?badge=latest"><img
         src="https://readthedocs.org/projects/apptimeclock/badge/?version=latest"/>
-</a>
+
+    <a href="http://stillmaintained.com/soren/App-TimeClock"><img
+        src="http://stillmaintained.com/soren/App-TimeClock.png"/></a>
 </p>
 
 =end html
