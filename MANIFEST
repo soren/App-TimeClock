@@ -23,6 +23,7 @@ t/manifest.t
 t/pod-coverage.t
 t/pod.t
 t/timelog.1day
+t/timelog.1week
 t/timelog.2days
 t/timelog.dos
 t/timelog.empty
