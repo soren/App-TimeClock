@@ -148,7 +148,7 @@ AUTHOR
 ******
 
 
-Søren Lund, \ ``<soren at lund.org>``\ 
+SÃ¸ren Lund, \ ``<soren at lund.org>``\ 
 
 
 ********
@@ -181,7 +181,7 @@ COPYRIGHT
 *********
 
 
-Copyright (C) 2012-2014 Søren Lund
+Copyright (C) 2012-2014 SÃ¸ren Lund
 
 This file is part of App::TimeClock.
 
