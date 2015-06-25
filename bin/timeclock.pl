@@ -86,8 +86,14 @@ __END__
         src="https://coveralls.io/repos/soren/App-TimeClock/badge.png?branch=master"/></a>
 
     <a href="https://readthedocs.org/projects/apptimeclock/?badge=latest"><img
-        src="https://readthedocs.org/projects/apptimeclock/badge/?version=latest"/>
+        src="https://readthedocs.org/projects/apptimeclock/badge/?version=latest"/></a>
 
+    <a href="https://metacpan.org/release/App-TimeClock"><img
+        src="https://img.shields.io/cpan/v/App-TimeClock.png"/></a>
+    
+    <a href="https://www.gnu.org/licenses/gpl.html"><img
+        src="https://img.shields.io/github/license/soren/App-TimeClock.png"/></a>
+        
     <a href="http://stillmaintained.com/soren/App-TimeClock"><img
         src="http://stillmaintained.com/soren/App-TimeClock.png"/></a>
 
