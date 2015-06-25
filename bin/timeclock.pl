@@ -80,10 +80,10 @@ __END__
 
 <p>
     <a href="https://travis-ci.org/soren/App-TimeClock"><img
-       src="https://travis-ci.org/soren/App-TimeClock.svg?branch=master"/></a>
+        src="https://img.shields.io/travis/soren/App-TimeClock.svg"/></a>
 
     <a href="https://coveralls.io/r/soren/App-TimeClock?branch=master"><img
-        src="https://coveralls.io/repos/soren/App-TimeClock/badge.png?branch=master"/></a>
+        src="https://img.shields.io/coveralls/soren/App-TimeClock.svg"/></a>
 
     <a href="https://readthedocs.org/projects/apptimeclock/?badge=latest"><img
         src="https://readthedocs.org/projects/apptimeclock/badge/?version=latest"/></a>
