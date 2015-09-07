@@ -39,3 +39,7 @@ Revision history for App-TimeClock
 0.09   2013-03-11 08:53
        Included test file which was forgotten in previous release.
        Updated copyright year in main documentation.
+
+0.10   2015-09-07 22:21
+       Fixed Issue #13 by accepting all codes: b, h, i, o and O.
+       Note that codes b and h will just be skipped and O will be treated as o.
