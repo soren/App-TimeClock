@@ -108,13 +108,15 @@ sub _read_lines {
 
     die "Prematurely end of file." if eof($file);
 
-    ($iline = <$file>) =~ s/\R//g;
+    do {
+        ($iline = <$file>) =~ s/\R//g;
+    } while ($iline =~ /^[bh] /); # Just skip unsupported codes (#13)
 
     die "Expected check in in line $." unless $iline =~ /^i /;
 
     if (not eof($file)) {
         ($oline = <$file>) =~ s/\R//g;
-        die "Excepted check out in line $." unless $oline =~ /^o /;
+        die "Excepted check out in line $." unless $oline =~ /^[oO] /; # Note: O is treated as o
     }
 
     return ($iline, $oline);
@@ -250,7 +252,11 @@ L<timeclock.pl>
 
 =head1 COPYRIGHT
 
+<<<<<<< HEAD:lib/App/TimeClock/Daily/Report.pm
 Copyright (C) 2012-2014 Søren Lund
+=======
+Copyright (C) 2012-2015 Søren Lund
+>>>>>>> issue13:lib/App/TimeClock/DailyReport.pm
 
 This file is part of App::TimeClock.
 

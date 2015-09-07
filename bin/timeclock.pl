@@ -50,7 +50,11 @@ if ($#ARGV == 0) {
         pod2usage(-verbose => 2);
     } elsif ($ARGV[0] eq "--version") {        
         printf "\nThis is %s version %s\n", basename($0), App::TimeClock->VERSION();
+<<<<<<< HEAD
         print "\nCopyright (C) 2012-2014 Søren Lund\n";
+=======
+        print "\nCopyright (C) 2012-2015 Søren Lund\n";
+>>>>>>> issue13
         print "License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.\n";
         print "This is free software: you are free to change and redistribute it.\n";
         print "There is NO WARRANTY, to the extent permitted by law.\n";
@@ -226,7 +230,11 @@ make changes.
 
 =head1 COPYRIGHT
 
+<<<<<<< HEAD
 Copyright (C) 2012-2014 Søren Lund
+=======
+Copyright (C) 2012-2015 Søren Lund
+>>>>>>> issue13
 
 This file is part of App::TimeClock.
 

@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 16;
+use Test::More tests => 18;
 
 use FindBin;
 use File::Temp qw(tempfile);
@@ -94,4 +94,10 @@ sub daily_report {
     my ($size, @report) = daily_report("timelog.pastmidnight");
     is($report[-6], "| ThisWillBeALongDay                                           | 18.00 |", "Long hours");
     is($report[-3], "TOTAL = 26.14 hours", "Total hours worked");
+}
+
+{
+    my ($size, @report) = daily_report("timelog.issue13");
+    is($size, 1872, "Size of report");
+    is($report[9], "| cam                                                          |  8.00 |", "Eight hours");
 }

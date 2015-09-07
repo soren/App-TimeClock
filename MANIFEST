@@ -1,3 +1,4 @@
+.travis.yml
 bin/timeclock.pl
 Build.PL
 Changes
@@ -37,6 +38,7 @@ t/timelog.bad3
 t/timelog.bad4
 t/timelog.dos
 t/timelog.empty
+t/timelog.issue13
 t/timelog.open
 t/timelog.pastmidnight
 t/weeklyreport-console.t
