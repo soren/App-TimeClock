@@ -115,11 +115,7 @@ L<timeclock.pl>
 
 =head1 COPYRIGHT
 
-<<<<<<< HEAD:lib/App/TimeClock/Daily/PrinterInterface.pm
-Copyright (C) 2012-2014 Søren Lund
-=======
 Copyright (C) 2012-2015 Søren Lund
->>>>>>> issue13:lib/App/TimeClock/PrinterInterface.pm
 
 This file is part of App::TimeClock.
 
