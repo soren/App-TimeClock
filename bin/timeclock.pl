@@ -90,12 +90,9 @@ __END__
 
     <a href="https://metacpan.org/release/App-TimeClock"><img
         src="https://img.shields.io/cpan/v/App-TimeClock.png"/></a>
-    
+
     <a href="https://www.gnu.org/licenses/gpl.html"><img
         src="https://img.shields.io/github/license/soren/App-TimeClock.png"/></a>
-        
-    <a href="http://stillmaintained.com/soren/App-TimeClock"><img
-        src="http://stillmaintained.com/soren/App-TimeClock.png"/></a>
 
     <a href="http://waffle.io/soren/App-TimeClock"><img
         src="https://badge.waffle.io/soren/App-TimeClock.png?label=ready&title=Ready"/></a>
