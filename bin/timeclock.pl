@@ -20,7 +20,8 @@ use App::TimeClock::Weekly::Report;
 # Initialize/read configuration
 {
     package Config;
-    our $timelog = "$ENV{HOME}/.timelog";
+    our $timelog = "$ENV{HOME}/.emacs.d/timelog";
+    $timelog = "$ENV{HOME}/.timelog" unless -f $timelog;
     do "$ENV{HOME}/.timeclockrc";
 }
 
