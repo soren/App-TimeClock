@@ -4,6 +4,7 @@ use Test::More tests => 6;
 
 use FindBin;
 use File::Temp qw(tempfile);
+use POSIX qw(strftime);
 
 use App::TimeClock::Daily::Report;
 use App::TimeClock::Daily::PrinterInterface;
@@ -36,14 +37,16 @@ sub daily_report {
 
 {
     my ($size, @report) = daily_report("timelog.1day");
+    my $day = strftime("%a", 0, 0, 0, 15, 2, 112);
     is($#report, 0, "Number of lines in report");
-    is($size, 50, "Size of report");
-    is($report[0], '"Thu","2012/03/15","08:07:06","16:15:14",8.135278', "First line");
+    is($size, 47+length($day), "Size of report");
+    is($report[0], '"'.$day.'","2012/03/15","08:07:06","16:15:14",8.135278', "First line");
 }
 
 {
     my ($size, @report) = daily_report("timelog.2days");
+    my $day = strftime("%a", 0, 0, 0, 16, 2, 112);
     is($#report, 1, "Number of lines in report");
-    is($size, 100, "Size of report");
-    is($report[1], '"Fri","2012/03/16","08:00:00","16:00:00",8.000000', "Last line");
+    is($size, 96+length($day), "Size of report");
+    is($report[1], '"'.$day.'","2012/03/16","08:00:00","16:00:00",8.000000', "Last line");
 }
