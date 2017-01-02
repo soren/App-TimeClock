@@ -43,3 +43,10 @@ Revision history for App-TimeClock
 0.10   2015-09-07 22:21
        Fixed Issue #13 by accepting all codes: b, h, i, o and O.
        Note that codes b and h will just be skipped and O will be treated as o.
+
+0.11   2016-12-30 10:18
+       Fixed Issue #16 by supporting new default location of the timelog file in Emacs 25.
+
+0.12   2017-01-02 10:28
+       Fixed Issue #17 concerning unit tests failing when locale is not en_US.UTF-8
+
