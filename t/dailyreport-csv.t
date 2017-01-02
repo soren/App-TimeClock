@@ -45,8 +45,9 @@ sub daily_report {
 
 {
     my ($size, @report) = daily_report("timelog.2days");
-    my $day = strftime("%a", 0, 0, 0, 16, 2, 112);
+    my $day1 = strftime("%a", 0, 0, 0, 15, 2, 112);
+    my $day2 = strftime("%a", 0, 0, 0, 16, 2, 112);
     is($#report, 1, "Number of lines in report");
-    is($size, 96+length($day), "Size of report");
-    is($report[1], '"'.$day.'","2012/03/16","08:00:00","16:00:00",8.000000', "Last line");
+    is($size, 94+length($day1)+length($day2), "Size of report");
+    is($report[1], '"'.$day2.'","2012/03/16","08:00:00","16:00:00",8.000000', "Last line");
 }
