@@ -1,5 +1,8 @@
 package App::TimeClock::Daily::PrinterInterface;
 
+use strict;
+use warnings;
+
 =head1 NAME
 
 App::TimeClock::Daily::PrinterInterface

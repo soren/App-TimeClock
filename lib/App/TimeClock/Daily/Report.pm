@@ -1,5 +1,8 @@
 package App::TimeClock::Daily::Report;
 
+use strict;
+use warnings;
+
 use POSIX qw(difftime strftime);
 use Time::Local;
 

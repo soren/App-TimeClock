@@ -1,5 +1,8 @@
 package App::TimeClock::Weekly::ConsolePrinter;
 
+use strict;
+use warnings;
+
 our @ISA = qw(App::TimeClock::Weekly::PrinterInterface);
 
 use POSIX qw(strftime);
