@@ -50,3 +50,6 @@ Revision history for App-TimeClock
 0.12   2017-01-02 10:28
        Fixed Issue #17 concerning unit tests failing when locale is not en_US.UTF-8
 
+0.13   2017-01-04 11:14
+       Fixed Issue #18 by implementing support for perl version pre 5.10. Also all CPAN Testers tests sould be green.
+       Fixed Issue #20 by adding use strict/warnings, this should remove all Kwalitee issues.
