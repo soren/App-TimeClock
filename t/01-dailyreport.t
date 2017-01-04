@@ -24,7 +24,7 @@ BEGIN {
 my $printer = App::TimeClock::Daily::ConsolePrinter->new();
 my $timelog = find_timelog("timelog.empty");
 
-ok(my $report = App::TimeClock::Daily::Report->new($timelog, $printer));
+ok(my $report = App::TimeClock::Daily::Report->new($timelog, $printer), "Report can be created");
 
 # private get/set report_time methods
 is($report->_get_report_time(), time, "Report time is current time by default");
@@ -35,37 +35,41 @@ SKIP: {
     eval { use Test::Exception };
     skip "Test::Exception not installed", 12 if $@;
 
-    dies_ok {App::TimeClock::Daily::Report->new()};
-    dies_ok {App::TimeClock::Daily::Report->new($timelog)};
-    dies_ok {App::TimeClock::Daily::Report->new($timelog, $timelog)}; # printer is not a reference
-    dies_ok {App::TimeClock::Daily::Report->new($timelog, \$timelog)}; # printer is not an object
-    dies_ok {App::TimeClock::Daily::Report->new($timelog, Dummy->new())}; # printer is not a PrinterInterface
+    dies_ok (sub {App::TimeClock::Daily::Report->new()}, "No arguments to new()");
+    dies_ok (sub {App::TimeClock::Daily::Report->new($timelog)}, "Missing printer argument to new()");
+    dies_ok (sub {App::TimeClock::Daily::Report->new($timelog, $timelog)}, "Printer is not a reference");
+    dies_ok (sub {App::TimeClock::Daily::Report->new($timelog, \$timelog)}, "Printer is not an object");
+    dies_ok (sub {App::TimeClock::Daily::Report->new($timelog, Dummy->new())}, "Printer is not a PrinterInterface");
 
-    dies_ok {App::TimeClock::Daily::Report->new("./nothing_to_find_here", $printer)};
+    dies_ok (sub {App::TimeClock::Daily::Report->new("./nothing_to_find_here", $printer)}, "Timelog file does not exist");
 
-    my ($fh, $filename) = tempfile(UNLINK => 1);
-    chmod 0220, $filename;
+    SKIP: {
+        skip "Running on Windows", 2 if $^O eq 'MSWin32';
 
-    dies_ok {App::TimeClock::Daily::Report->new($filename, $printer)};
+        my ($fh, $filename) = tempfile(UNLINK => 1);
+        chmod 0220, $filename;
 
-    chmod 0664, $filename;
+        dies_ok (sub {App::TimeClock::Daily::Report->new($filename, $printer)}, "Timelog not readable");
 
-    {
-        my $report = App::TimeClock::Daily::Report->new($filename, $printer);
-        unlink $filename;
-        dies_ok {$report->execute()};
+        chmod 0664, $filename;
+
+        {
+            my $report = App::TimeClock::Daily::Report->new($filename, $printer);
+            unlink $filename;
+            dies_ok (sub {$report->execute()}, "Timelog deleted");
+        }
     }
-
-    ($fh, $filename) = tempfile(UNLINK => 1);
+	
+    my ($fh, $filename) = tempfile(UNLINK => 1);
 
     # private _read_lines
-    dies_ok {$report->_read_lines($fh)}; # prematurely end of file
+    dies_ok (sub {$report->_read_lines($fh)}, "Prematurely end of file");
 
     open my $file, '<', find_timelog("timelog.bad3");
-    dies_ok {$report->_read_lines($file)}; # excepected check in
+    dies_ok (sub {$report->_read_lines($file)}, "Excepected check in");
     close $file;
 
     open $file, '<', find_timelog("timelog.bad4");
-    dies_ok {$report->_read_lines($file)}; # excepected check out
+    dies_ok (sub {$report->_read_lines($file)}, "Excepected check out");
     close $file;
 }
