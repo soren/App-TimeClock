@@ -6,6 +6,8 @@ use warnings;
 use POSIX qw(difftime strftime);
 use Time::Local;
 
+my $EOL_RE = qr/[\r\n]+\z/;
+
 =head1 NAME
 
 App::TimeClock::Weekly::Report
@@ -97,12 +99,12 @@ sub _read_lines {
 
     die "Prematurely end of file." if eof($file);
 
-    ($iline = <$file>) =~ s/\R//g;
+    ($iline = <$file>) =~ s/$EOL_RE//g;
 
     die "Expected check in in line $." unless $iline =~ /^i /;
         
     if (not eof($file)) {
-        ($oline = <$file>) =~ s/\R//g;
+        ($oline = <$file>) =~ s/$EOL_RE//g;
         die "Excepted check out in line $." unless $oline =~ /^o /;
     }
 

@@ -6,6 +6,8 @@ use warnings;
 use POSIX qw(difftime strftime);
 use Time::Local;
 
+my $EOL_RE = qr/[\r\n]+\z/;
+
 =head1 NAME
 
 App::TimeClock::Daily::Report
@@ -43,7 +45,7 @@ sub new {
     my $class = shift;
     my $self = {
         timelog => shift,
-        printer => shift,
+        printer => shift
     };
     die "timelog ($self->{timelog}) does not exist" unless -f $self->{timelog} and -r $self->{timelog};
     die "printer is not a PrinterInterface" unless ref $self->{printer} and
@@ -112,13 +114,13 @@ sub _read_lines {
     die "Prematurely end of file." if eof($file);
 
     do {
-        ($iline = <$file>) =~ s/\R//g;
+        ($iline = <$file>) =~ s/$EOL_RE//g;
     } while ($iline =~ /^[bh] /); # Just skip unsupported codes (#13)
 
     die "Expected check in in line $." unless $iline =~ /^i /;
 
     if (not eof($file)) {
-        ($oline = <$file>) =~ s/\R//g;
+        ($oline = <$file>) =~ s/$EOL_RE//g;
         die "Excepted check out in line $." unless $oline =~ /^[oO] /; # Note: O is treated as o
     }
 
