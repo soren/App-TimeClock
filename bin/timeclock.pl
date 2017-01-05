@@ -51,7 +51,7 @@ if ($#ARGV == 0) {
         pod2usage(-verbose => 2);
     } elsif ($ARGV[0] eq "--version") {        
         printf "\nThis is %s version %s\n", basename($0), App::TimeClock->VERSION();
-        print "\nCopyright (C) 2012-2015 Søren Lund\n";
+        print "\nCopyright (C) 2012-2016 Søren Lund\n";
         print "License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.\n";
         print "This is free software: you are free to change and redistribute it.\n";
         print "There is NO WARRANTY, to the extent permitted by law.\n";
@@ -76,6 +76,8 @@ if ($#ARGV == 0) {
 App::TimeClock::Daily::Report->new($timelog, $printer)->execute();
 
 __END__
+
+=encoding utf-8
 
 =begin html
 
@@ -192,18 +194,12 @@ L<timeclock.pl> into Emacs:
      (start-process command-name buffer-name "perl" "-S" script-name)
      (switch-to-buffer buffer-name)))
 
-And the use C<M-x timeclock-show-daily-report RET> to display the
+And then use C<M-x timeclock-show-daily-report RET> to display the
 report.
-
-=head1 DEPENDENCIES
-
-=for text
-=encoding utf-8
-=end
 
 =head1 AUTHOR
 
-Søren Lund, C<< <soren at lund.org> >>
+Søren Lund, L<https://github.com/soren/>
 
 =head1 SEE ALSO
 
@@ -224,7 +220,7 @@ make changes.
 
 =head1 COPYRIGHT
 
-Copyright (C) 2012-2015 Søren Lund
+Copyright (C) 2012-2016 Søren Lund
 
 This file is part of App::TimeClock.
 
