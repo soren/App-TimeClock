@@ -107,9 +107,11 @@ __END__
 
 timeclock.pl - a timeclock reporting utility
 
-=head1 USAGE
+=head1 SYNOPSIS
 
-timeclock.pl [options] [file]
+timeclock.pl [--html|--csv] [file]
+
+timeclock.pl [--help|--man|--version]
 
 Some examples:
 
@@ -122,31 +124,46 @@ Some examples:
     # CSV output
     $ timeclock.pl --csv > report.csv
 
-=head1 OPTIONS
+=head1 ARGUMENTS
 
-Accepts excactly I<one> of the folowing options:
+If you run B<timeclock.pl> without any arguments, it will read a timelog file
+from one of the default locations (either ~/.emacs.d/timelog or ~/.timelog) and
+print an ASCII formatted daily report to the console.
 
-=over
+If your timelog file is located somewhere else, B<timeclock.pl> can be called
+with the name of a timelog file to read.
 
-=item B<--help>
+Whether you specify a file or not, you can change the default output format by
+adding on of the following arguments:
 
-Print short usages information and exits.
+=over 4
 
-=item B<--man>
-
-Displays the manual and exits.
-
-=item B<--version>
-
-Displays the version number and copyright information and exits.
-
-=item B<--html>
+=item C<--html>
 
 Switches to HTML formatted output.
 
-=item B<--csv>
+=item C<--csv>
 
 Switches to CSV formatted output.
+
+=back
+
+B<timeclock.pl> can also print version an usage information. This is done by
+specifying exactly one argument that should be one of the following:
+
+=over 4
+
+=item C<--help>
+
+Print short usages information and exits.
+
+=item C<--man>
+
+Displays the manual and exits.
+
+=item C<--version>
+
+Displays the version number and copyright information and exits.
 
 =back
 
@@ -165,13 +182,14 @@ report of your work time.
 
 If you haven't changed your Emacs/TimeClock setup, no configuration is
 needed. The script will read your timelog file from the default
-location which is ~/.timelog
+location which is either ~/.emacs.d/timlog or  ~/.timelog depending on
+your Emacs version.
 
 If you have changed the location of the timelog file (I've placed mine
-in a Dropbox folder), you can create the file ~/.timeclockrc and
+in a MEGA folder), you can create the file ~/.timeclockrc and
 define the location of the timelog file there. Example:
 
- $timelog = "$ENV{HOME}/Dropbox/timelog";
+ $timelog = "$ENV{HOME}/MEGA/timelog";
 
 =head2 Emacs Integration
 
