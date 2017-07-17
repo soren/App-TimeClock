@@ -91,6 +91,9 @@ __END__
     <a href="https://coveralls.io/r/soren/App-TimeClock?branch=master"><img
         src="https://img.shields.io/coveralls/soren/App-TimeClock.svg"/></a>
 
+    <a href="https://bettercodehub.com/results/soren/App-TimeClock"><img
+        src='https://bettercodehub.com/edge/badge/soren/App-TimeClock?branch=master'></a>
+
     <a href="https://readthedocs.org/projects/apptimeclock/?badge=latest"><img
         src="https://readthedocs.org/projects/apptimeclock/badge/?version=latest"/></a>
 
