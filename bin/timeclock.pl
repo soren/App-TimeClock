@@ -77,10 +77,6 @@ App::TimeClock::Daily::Report->new($timelog, $printer)->execute();
 
 __END__
 
-=for text
-=encoding utf-8
-=end
-
 =begin html
 
 <p>
@@ -89,7 +85,7 @@ __END__
 
     <a href="https://ci.appveyor.com/api/projects/status/n29a40nu3tc9939q?svg=true"><img
         src="https://ci.appveyor.com/project/soren/app-timeclock"/></a>
-    
+
     <a href="https://coveralls.io/r/soren/App-TimeClock?branch=master"><img
         src="https://img.shields.io/coveralls/soren/App-TimeClock.svg"/></a>
 
