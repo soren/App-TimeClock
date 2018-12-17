@@ -42,6 +42,7 @@ SKIP: {
 
     SKIP: {
         skip "Running on Windows", 2 if $^O eq 'MSWin32';
+        skip "Running on Haiku", 2 if $^O eq 'haiku';
 
         my ($fh, $filename) = tempfile(UNLINK => 1);
         chmod 0220, $filename;
