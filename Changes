@@ -53,3 +53,11 @@ Revision history for App-TimeClock
 0.13   2017-01-04 11:14
        Fixed Issue #18 by implementing support for perl version pre 5.10. Also all CPAN Testers tests sould be green.
        Fixed Issue #20 by adding use strict/warnings, this should remove all Kwalitee issues.
+
+0.14   2018-12-17 11:43
+       Fixed Issue #22 and #23 by updating README and POD
+       Added App Veyor CI configuration for testing on Windows.
+       Updated Build badges.
+       Fixed test on Haiko
+
+       
