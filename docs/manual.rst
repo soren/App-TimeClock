@@ -181,7 +181,7 @@ COPYRIGHT
 *********
 
 
-Copyright (C) 2012-2014 Søren Lund
+Copyright (C) 2012-2018 Søren Lund
 
 This file is part of App::TimeClock.
 
