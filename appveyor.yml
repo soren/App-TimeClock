@@ -9,6 +9,6 @@ install:
 
 build: off
 
-build_script:
+test_script:
   - perl Build.PL
   - perl Build test
