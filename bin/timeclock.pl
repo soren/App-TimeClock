@@ -219,6 +219,10 @@ L<timeclock.pl> into Emacs:
 And then use C<M-x timeclock-show-daily-report RET> to display the
 report.
 
+=for text
+=encoding utf-8
+=end
+
 =head1 AUTHOR
 
 Søren Lund, L<https://github.com/soren/>
