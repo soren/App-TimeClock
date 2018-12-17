@@ -7,6 +7,8 @@ install:
   - cd C:\projects\%APPVEYOR_PROJECT_NAME%
   - cpanm --installdeps .
 
+build: off
+
 build_script:
   - perl Build.PL
   - perl Build test
