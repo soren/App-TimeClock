@@ -77,7 +77,9 @@ App::TimeClock::Daily::Report->new($timelog, $printer)->execute();
 
 __END__
 
+=for text
 =encoding utf-8
+=end
 
 =begin html
 
