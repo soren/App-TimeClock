@@ -200,6 +200,8 @@ define the location of the timelog file there. Example:
 You could add the following to you .emacs file to integrate
 L<timeclock.pl> into Emacs:
 
+ (defun timeclock-show-daily-report()
+
 And then use C<M-x timeclock-show-daily-report RET> to display the
 report.
 
