@@ -206,15 +206,6 @@ L<timeclock.pl> into Emacs:
    (let ((process-connection-type nil)   ; Use a pipe.
          (command-name "timeclock")
          (buffer-name "timeclock daily report")
-         (script-name "timeclock.pl"))
-     (when (get-buffer buffer-name)
-       (progn
-         (set-buffer buffer-name)
-         (set-buffer-modified-p nil)
-         (erase-buffer)))
-     (set-buffer (get-buffer-create buffer-name))
-     (start-process command-name buffer-name "perl" "-S" script-name)
-     (switch-to-buffer buffer-name)))
 
 And then use C<M-x timeclock-show-daily-report RET> to display the
 report.
