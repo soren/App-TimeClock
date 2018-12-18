@@ -204,6 +204,8 @@ L<timeclock.pl> into Emacs:
    "Creates and displays a daily report of tim<eclock entries."
    (interactive)
    (let ((process-connection-type nil)   ; Use a pipe.
+         (command-name "timeclock")
+         (buffer-name "*timeclock daily report*")
 
 And then use C<M-x timeclock-show-daily-report RET> to display the
 report.
