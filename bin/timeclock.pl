@@ -197,9 +197,10 @@ define the location of the timelog file there. Example:
 
 =head2 Emacs Integration
 
-You could add the following to you .emacs file to integrate
+You can add the following to you .emacs file to integrate
 L<timeclock.pl> into Emacs:
- 
+
+
  (defun timeclock-show-daily-report()
    "Creates and displays a daily report of tim<eclock entries."
    (interactive)
@@ -215,6 +216,7 @@ L<timeclock.pl> into Emacs:
      (set-buffer (get-buffer-create buffer-name))
      (start-process command-name buffer-name "perl" "-S" script-name)
      (switch-to-buffer buffer-name)))
+
 
 And then use C<M-x timeclock-show-daily-report RET> to display the
 report.
