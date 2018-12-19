@@ -4,8 +4,8 @@
     <a href="https://travis-ci.org/soren/App-TimeClock"><img
         src="https://img.shields.io/travis/soren/App-TimeClock.svg"/></a>
 
-    <a href="https://ci.appveyor.com/api/projects/status/n29a40nu3tc9939q?svg=true"><img
-        src="https://ci.appveyor.com/project/soren/app-timeclock"/></a>
+    <a href="https://ci.appveyor.com/project/soren/app-timeclock"><img
+        src="https://ci.appveyor.com/api/projects/status/n29a40nu3tc9939q?svg=true"/></a>
 
     <a href="https://coveralls.io/r/soren/App-TimeClock?branch=master"><img
         src="https://img.shields.io/coveralls/soren/App-TimeClock.svg"/></a>
